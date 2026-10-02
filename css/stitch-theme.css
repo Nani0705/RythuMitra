@@ -1,0 +1,174 @@
+/* ===================================================================
+   🌾 RYTHUMITRA — Google Stitch Design System Theme
+   Natural + Modern + Friendly + Trustworthy Agricultural Aesthetic
+   =================================================================== */
+
+:root {
+  /* Brand Agricultural Color Palette */
+  --primary-900: #0f3d17;
+  --primary-800: #14532d;
+  --primary-700: #166534;
+  --primary-600: #15803d; /* Primary Brand Green */
+  --primary-500: #22c55e; /* Fresh Leaf Green */
+  --primary-400: #4ade80;
+  --primary-100: #dcfce7;
+  --primary-50:  #f0fdf4;
+
+  /* Harvest Accent Yellow & Golden Tones */
+  --accent-700: #b45309;
+  --accent-600: #d97706;
+  --accent-500: #f59e0b; /* Harvest Gold */
+  --accent-400: #fbbf24;
+  --accent-100: #fef3c7;
+  --accent-50:  #fffbeb;
+
+  /* Earth Soil & Water */
+  --earth-800:  #5c3a21;
+  --earth-700:  #78350f;
+  --earth-100:  #fef3c7;
+  --water-600:  #0284c7;
+  --water-500:  #0ea5e9;
+  --water-100:  #e0f2fe;
+
+  /* Neutrals & Surfaces */
+  --bg-page:       #f7faf5; /* Warm off-white with hint of pasture */
+  --bg-surface:    #ffffff;
+  --bg-surface-alt:#f1f5ec;
+  --bg-elevated:   #ffffff;
+
+  /* Text & Contrast */
+  --text-main:     #111827; /* Dark charcoal */
+  --text-muted:    #4b5563; /* Slate grey */
+  --text-subtle:   #6b7280;
+  --text-inverse:  #ffffff;
+
+  /* Border & Dividers */
+  --border-subtle: #e5e7eb;
+  --border-brand:  #bbf7d0;
+  --border-warm:   #fef08a;
+
+  /* Status Colors */
+  --success-bg:    #dcfce7;
+  --success-text:  #15803d;
+  --warning-bg:    #fef9c3;
+  --warning-text:  #a16207;
+  --danger-bg:     #fee2e2;
+  --danger-text:   #b91c1c;
+  --info-bg:       #e0f2fe;
+  --info-text:     #0369a1;
+
+  /* Geometry & Spacing */
+  --radius-sm:     8px;
+  --radius-md:     14px;
+  --radius-lg:     20px;
+  --radius-xl:     28px;
+  --radius-pill:   9999px;
+
+  /* Shadows */
+  --shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card:   0 4px 16px -2px rgba(20, 83, 45, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  --shadow-hover:  0 12px 28px -4px rgba(20, 83, 45, 0.16), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 20px 35px -8px rgba(15, 61, 23, 0.2);
+
+  /* Typography */
+  --font-family:   'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Telugu', sans-serif;
+  --font-telugu:   'Noto Sans Telugu', 'Gautami', 'Segoe UI', sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Heights & Header */
+  --header-height: 70px;
+  --sidebar-width: 260px;
+  --bottom-nav-height: 68px;
+}
+
+/* Base resets & box sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Telugu font adaptation */
+[lang="te"], .lang-te, body.te-active {
+  font-family: var(--font-telugu), var(--font-family);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 3px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utility Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes scanLaser {
+  0% { top: 0%; opacity: 0.8; }
+  50% { top: 90%; opacity: 1; }
+  100% { top: 0%; opacity: 0.8; }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

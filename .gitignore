@@ -1,0 +1,9 @@
+# Chrome Debug Profiles & Test Logs
+chrome_profile/
+chrome_debug_profile/
+chrome_debug_profile_9333/
+*.log
+
+# OS metadata
+Thumbs.db
+.DS_Store

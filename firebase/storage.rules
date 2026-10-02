@@ -1,0 +1,35 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Public catalog images (crops, diseases, schemes)
+    match /crops/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAuthenticated() && request.auth.token.admin == true;
+    }
+
+    match /diseases/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAuthenticated() && request.auth.token.admin == true;
+    }
+
+    // Farmer uploaded leaf photos for AI scanner
+    match /uploads/{userId}/{imageId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Farmer profile avatars
+    match /users/{userId}/{imageId} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+  }
+}

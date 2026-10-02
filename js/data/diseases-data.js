@@ -1,0 +1,87 @@
+/* ===================================================================
+   🌾 RYTHUMITRA — Pest & Disease Catalog Data
+   Bilingual symptoms, causes, organic & chemical management
+   =================================================================== */
+
+window.RYTHU_DISEASES_DATA = [
+  {
+    id: "tikka-leaf-spot",
+    cropId: "groundnut",
+    cropNameEn: "Groundnut",
+    cropNameTe: "వేరుశనగ",
+    nameEn: "Tikka Leaf Spot (Cercospora)",
+    nameTe: "తిక్క ఆకుమచ్చ తెగులు",
+    type: "Fungal Disease",
+    typeTe: "శిలీంధ్ర తెగులు",
+    severity: "High",
+    image: "assets/images/leaf_disease_sample.jpg",
+    symptoms: "Circular, dark brown to black spots appear on both leaf surfaces surrounded by a bright yellow chlorotic halo. Severe infection causes premature defoliation and shrivelled pods.",
+    symptomsTe: "ఆకులపై గుండ్రటి ముదురు గోధుమ/నలుపు మచ్చలు ఏర్పడి చుట్టూ పసుపు రంగు వలయం కనిపిస్తుంది. తీవ్రమైతే ఆకులు రాలిపోయి కాయలు బక్కచిక్కిపోతాయి.",
+    causes: "Cercospora personata and Cercospora arachidicola fungi; favored by high relative humidity (>85%), warm days (25-30°C), and continuous wet foliage.",
+    causesTe: "సెర్కోస్పోరా శిలీంధ్రం; అధిక గాలి తేమ (85% పైగా), వర్షాలు పడినప్పుడు వాతావరణం అనుకూలించినప్పుడు వేగంగా వ్యాపిస్తుంది.",
+    organicControl: "Spray 5% Neem Seed Kernel Extract (NSKE) or Panchagavya @ 30ml/liter. Seed treatment with Trichoderma viride @ 4g/kg.",
+    organicControlTe: "5% వేప గింజల కషాయం లేదా పంచగవ్య లీటరు నీటికి 30 మి.లీ పిచికారీ చేయాలి. విత్తనశుద్ధికి ట్రైకోడెర్మా విరిడే వాడాలి.",
+    chemicalControl: "Spray Carbendazim 12% + Mancozeb 63% WP (Saaf) @ 2g/liter or Hexaconazole 5% SC (Contaf) @ 2ml/liter. Repeat after 15 days if symptoms persist.",
+    chemicalControlTe: "లీటరు నీటికి 2 గ్రాముల కార్బండజిమ్ + మాంకోజెబ్ (సాఫ్) లేదా 2 మి.లీ హెక్సాకొనజోల్ (కాంటాఫ్) కలిపి పిచికారీ చేయాలి."
+  },
+  {
+    id: "paddy-blast",
+    cropId: "paddy",
+    cropNameEn: "Paddy",
+    cropNameTe: "వరి",
+    nameEn: "Rice Blast (Pyricularia oryzae)",
+    nameTe: "వరి అగ్గితెగులు",
+    type: "Fungal Disease",
+    typeTe: "శిలీంధ్ర తెగులు",
+    severity: "Critical",
+    image: "assets/images/leaf_disease_sample.jpg",
+    symptoms: "Spindle-shaped or eye-shaped lesions with ash-grey center and brownish-red borders on leaves. Neck blast leads to rotten neck and empty, sterile whitish panicles.",
+    symptomsTe: "ఆకులపై కంటి ఆకారంలో (కండె ఆకారం) బూడిద రంగు కేంద్రం, గోధుమ రంగు అంచులు గల మచ్చలు ఏర్పడతాయి. మెడ విరుపు తెగులు సోకితే వెన్నులు తెల్లబడి గింజ పాలుపోసుకోదు.",
+    causes: "Pyricularia oryzae fungus; promoted by high nitrogen fertilizer doses, cool cloudy days (20-24°C), and prolonged leaf wetness due to fog or rain.",
+    causesTe: "అధిక నత్రజని వాడకం, చల్లని మంచు వాతావరణం మరియు ఎక్కువ తేమ ఉన్నప్పుడు తీవ్రంగా వస్తుంది.",
+    organicControl: "Avoid excess urea. Spray Pseudomonas fluorescens @ 5g/liter at seedling and tillering stages.",
+    organicControlTe: "యూరియా ఎరువును మోతాదుకు మించి వాడకూడదు. సూడోమోనాస్ ఫ్లోరోసెన్స్ లీటరుకు 5 గ్రాముల చొప్పున పిచికారీ చేయాలి.",
+    chemicalControl: "Spray Tricyclazole 75% WP (Beam) @ 0.6g/liter or Isoprothiolane 40% EC @ 1.5ml/liter. Ensure uniform canopy coverage.",
+    chemicalControlTe: "లీటరు నీటికి 0.6 గ్రాముల ట్రైసైక్లాజోల్ (బీమ్) లేదా 1.5 మి.లీ ఐసోప్రోథియోలేన్ కలిపి పిచికారీ చేయాలి."
+  },
+  {
+    id: "chilli-leaf-curl",
+    cropId: "chilli",
+    cropNameEn: "Red Chilli",
+    cropNameTe: "మిరప",
+    nameEn: "Chilli Leaf Curl (Gemini Virus)",
+    nameTe: "మిరప బొబ్బర తెగులు (ఆకుముడత)",
+    type: "Viral Disease (Vector-borne)",
+    typeTe: "వైరస్ తెగులు",
+    severity: "High",
+    image: "assets/images/leaf_disease_sample.jpg",
+    symptoms: "Upward or downward curling of leaves, puckering, thickening of veins, severe stunting of plant, flower drop, and distorted fruits.",
+    symptomsTe: "ఆకులు పైకి లేదా కిందికి ముడుచుకుపోవడం, నరాల వాపు, మొక్క ఎదుగుదల ఆగిపోవడం, పూత రాలిపోవడం మరియు పిందెలు వంకరపోవడం.",
+    causes: "Chilli Leaf Curl Virus transmitted primarily by Whiteflies (Bemisia tabaci) and Thrips. Warm dry spells increase vector populations.",
+    causesTe: "తెల్లదోమ మరియు తామర పురుగుల ద్వారా ఈ వైరస్ ఆరోగ్యకరమైన మొక్కలకు వేగంగా వ్యాపిస్తుంది.",
+    organicControl: "Install yellow and blue sticky traps (20 per acre). Spray neem oil 10,000 ppm @ 2ml/liter to repel sucking pests.",
+    organicControlTe: "ఎకరాకు 20 పసుపు, నీలం జిగురు అట్టలను అమర్చాలి. 10,000 ppm వేపనూనె లీటరుకు 2 మి.లీ పిచికారీ చేయాలి.",
+    chemicalControl: "Control whitefly vector with Diafenthiuron 50% WP @ 1.25g/liter or Acetamiprid 20% SP @ 0.2g/liter. Rogue out severely infected plants.",
+    chemicalControlTe: "తెల్లదోమ నివారణకు డయాఫెంథియురాన్ 1.25 గ్రా లేదా ఎసిటామ్రిప్రిడ్ 0.2 గ్రా లీటరు నీటికి కలిపి పిచికారీ చేయాలి."
+  },
+  {
+    id: "cotton-pink-bollworm",
+    cropId: "cotton",
+    cropNameEn: "Cotton",
+    cropNameTe: "ప్రత్తి",
+    nameEn: "Pink Bollworm (Pectinophora gossypiella)",
+    nameTe: "గులాబీ రంగు కాయతొలుచు పురుగు",
+    type: "Insect Pest",
+    typeTe: "కీటక పురుగు",
+    severity: "Critical",
+    image: "assets/images/cotton_crop.jpg",
+    symptoms: "Rosetted flowers ('rosette' bloom). Young larvae enter developing bolls, feed on developing seeds and lint, leaving dirty stained cotton and premature boll drop.",
+    symptomsTe: "గులాబీ రంగు మొగ్గలు (రోసెట్ పూలు). పురుగు కాయల్లోకి చొరబడి విత్తనాలు, దూదిని తినేసి నాణ్యతను నాశనం చేస్తుంది.",
+    causes: "Night-flying moths lay eggs in flower buds; intensive continuous monocropping without non-Bt refuge crops.",
+    causesTe: "పెట్టినోఫోరా గాసిపియెల్లా లార్వాలు; వేసవిలో పత్తి మోళ్లను కాల్చకుండా వదిలేయడం వల్ల నిద్రావస్థలో ఉండి తర్వాతి పంటకు సోకుతాయి.",
+    organicControl: "Install Pheromone traps @ 8-10 traps/acre with Gossyplure lures. Release Trichogramma chilonis egg parasitoids.",
+    organicControlTe: "ఎకరాకు 8-10 లింగాకర్షక బుట్టలు అమర్చి పురుగు ఉనికిని గమనించాలి. ట్రైకోగ్రామా కార్డులు వాడాలి.",
+    chemicalControl: "Spray Chlorantraniliprole 18.5% SC @ 0.3ml/liter or Emamectin Benzoate 5% SG @ 0.5g/liter when moth catches exceed 8 moths/trap/night for 3 consecutive nights.",
+    chemicalControlTe: "లీటరు నీటికి 0.3 మి.లీ కోరాజెన్ లేదా 0.5 గ్రాముల ఎమామెక్టిన్ బెంజోయేట్ కలిపి పిచికారీ చేయాలి."
+  }
+];

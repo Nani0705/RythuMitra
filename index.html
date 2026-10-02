@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>🌾 RythuMitra — Smart Digital Farming Platform | రైతుమిత్ర</title>
+  <meta name="description" content="RythuMitra is a multilingual digital farming companion for Indian farmers. Verified crop guides, live Open-Meteo weather, APMC mandi rates, AI leaf disease scanner, and government welfare schemes." />
+  <meta name="keywords" content="RythuMitra, smart agriculture, Indian farming, Andhra Pradesh crops, groundnut, paddy, weather advisory, mandi bhav, e-NAM, AI leaf disease, Rythu Bharosa, PM-KISAN" />
+  <meta name="theme-color" content="#166534" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Telugu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/stitch-theme.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div style="display:flex; align-items:center; gap:0.75rem;">
+      <button id="mobileMenuToggleBtn" class="icon-action-btn" style="display:none;" aria-label="Toggle Navigation">
+        ☰
+      </button>
+
+      <div class="header-brand">
+        <div class="brand-icon-box">🌾</div>
+        <div class="brand-text">
+          <span class="brand-name" data-i18n="appName">RythuMitra</span>
+          <span class="brand-tagline" data-i18n="appTagline">Your Digital Farming Companion</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Middle Quick Search Trigger -->
+    <div class="header-search">
+      <button id="headerSearchBtn" class="header-search-btn" aria-label="Global Search">
+        <span>🔍</span>
+        <span data-i18n="searchPlaceholder">Search crops, diseases, schemes, markets...</span>
+        <span class="header-search-shortcut">Ctrl+K</span>
+      </button>
+    </div>
+
+    <!-- Header Tools & Language Toggle -->
+    <div class="header-actions">
+      <!-- Language Switcher -->
+      <button id="langToggleBtn" class="lang-toggle-btn" aria-label="Switch Language">
+        <span>🌐</span>
+        <span data-i18n="toggleLanguage">తెలుగు</span>
+        <span class="lang-badge">TE</span>
+      </button>
+
+      <!-- Notifications Bell -->
+      <button id="notifBtn" class="icon-action-btn" aria-label="View Notifications">
+        🔔
+        <span id="notifDot" class="notif-badge-dot"></span>
+      </button>
+
+      <!-- User Profile Chip -->
+      <div id="userProfileChip" class="user-profile-chip" title="Farmer Profile & Settings">
+        <div class="user-avatar">👨‍🌾</div>
+        <div class="user-name-label" id="headerUserName">Ravi</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <div class="app-container">
+    
+    <!-- Sidebar Backdrop for Mobile -->
+    <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+    <!-- Desktop & Drawer Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-section-title">Core Navigation</div>
+      <ul class="nav-menu">
+        <li>
+          <div class="nav-link active" data-view="landing">
+            <span class="nav-icon">🏠</span>
+            <span data-i18n="navHome">Home</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="dashboard">
+            <span class="nav-icon">📊</span>
+            <span>Dashboard</span>
+            <span class="nav-pill-badge">Live</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="my-farm">
+            <span class="nav-icon">👨‍🌾</span>
+            <span data-i18n="navMyFarm">My Farm</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="crops">
+            <span class="nav-icon">🌱</span>
+            <span data-i18n="navCrops">Crop Guide</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="weather">
+            <span class="nav-icon">🌦️</span>
+            <span data-i18n="navWeather">Farm Weather</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="market">
+            <span class="nav-icon">💰</span>
+            <span data-i18n="navMarket">Market Prices</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="sidebar-section-title">Smart Advisory</div>
+      <ul class="nav-menu">
+        <li>
+          <div class="nav-link" data-view="diseases">
+            <span class="nav-icon">🐛</span>
+            <span data-i18n="navDiseases">Pest & Disease</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="scanner">
+            <span class="nav-icon">📷</span>
+            <span data-i18n="navScanner">AI Leaf Scanner</span>
+            <span class="nav-pill-badge" style="background:#fef3c7; color:#b45309;">AI</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="calendar">
+            <span class="nav-icon">📅</span>
+            <span data-i18n="navCalendar">Crop Calendar</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="soil">
+            <span class="nav-icon">🧪</span>
+            <span data-i18n="navSoil">Soil Health</span>
+          </div>
+        </li>
+        <li>
+          <div class="nav-link" data-view="schemes">
+            <span class="nav-icon">🏛️</span>
+            <span data-i18n="navSchemes">Govt Schemes</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="sidebar-section-title">Administration</div>
+      <ul class="nav-menu">
+        <li>
+          <div class="nav-link" data-view="admin">
+            <span class="nav-icon">⚙️</span>
+            <span data-i18n="navAdmin">Admin Portal</span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Sidebar RBK Helpline Card -->
+      <div class="sidebar-footer">
+        <div class="helpline-card">
+          <div class="helpline-title">📞 Kisan Call Center</div>
+          <div class="helpline-sub">Toll-Free Agricultural Support</div>
+          <a href="tel:18001801551" class="helpline-btn">
+            <span>☎️</span> <span>1800-180-1551</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Dynamic Content Views -->
+    <main class="app-main">
+
+      <!-- ================= SCREEN 01: LANDING PAGE ================= -->
+      <section id="view-landing" class="view-section active">
+        <!-- Hero Section -->
+        <div class="hero-card">
+          <img src="assets/images/hero_farmer_field.jpg" alt="Indian Farmer in lush green fields" class="hero-bg-img" />
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <div class="hero-tag">
+              <span>🌾</span> <span data-i18n="heroTag">Smart Digital Agriculture Platform</span>
+            </div>
+            <h1 class="hero-title" data-i18n="heroTitle">
+              Smart Farming. Better Information.
+            </h1>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">
+              Everything you need for your farm, in one accessible place. Verified agronomic advisory, live weather, mandi prices, and digital farm management.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg" onclick="window.RythuNav.navigateTo('crops')">
+                <span data-i18n="btnExploreCrops">🌱 Explore Crops</span>
+              </button>
+              <button class="btn btn-accent btn-lg" onclick="window.RythuNav.navigateTo('dashboard')">
+                <span>📊</span> <span>Open Farmer Dashboard</span>
+              </button>
+              <button class="btn btn-secondary btn-lg" onclick="window.RythuNav.navigateTo('my-farm')">
+                <span data-i18n="btnMyFarm">👨‍🌾 My Farm</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Access Services Grid -->
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2 class="section-title" data-i18n="quickAccessTitle">⚡ Quick Access Services</h2>
+            <p class="section-subtitle" data-i18n="quickAccessSub">Essential farming tools and verified information at your fingertips</p>
+          </div>
+        </div>
+
+        <div class="quick-access-grid">
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('crops')">
+            <div class="quick-card-icon">🌱</div>
+            <div class="quick-card-title" data-i18n="cardCropsTitle">Crop Guide</div>
+            <div class="quick-card-desc" data-i18n="cardCropsDesc">Cultivation practices</div>
+          </div>
+
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('weather')">
+            <div class="quick-card-icon">🌦️</div>
+            <div class="quick-card-title" data-i18n="cardWeatherTitle">Farm Weather</div>
+            <div class="quick-card-desc" data-i18n="cardWeatherDesc">Live rain & temperature</div>
+          </div>
+
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('market')">
+            <div class="quick-card-icon">💰</div>
+            <div class="quick-card-title" data-i18n="cardMarketTitle">Market Prices</div>
+            <div class="quick-card-desc" data-i18n="cardMarketDesc">Daily APMC mandi rates</div>
+          </div>
+
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('diseases')">
+            <div class="quick-card-icon">🐛</div>
+            <div class="quick-card-title" data-i18n="cardDiseasesTitle">Crop Health</div>
+            <div class="quick-card-desc" data-i18n="cardDiseasesDesc">Identify pests & remedies</div>
+          </div>
+
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('scanner')">
+            <div class="quick-card-icon" style="background:#fef3c7; color:#d97706;">📷</div>
+            <div class="quick-card-title" data-i18n="cardScannerTitle">AI Leaf Scanner</div>
+            <div class="quick-card-desc" data-i18n="cardScannerDesc">Instant camera diagnosis</div>
+          </div>
+
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('calendar')">
+            <div class="quick-card-icon">📅</div>
+            <div class="quick-card-title" data-i18n="cardCalendarTitle">Crop Calendar</div>
+            <div class="quick-card-desc" data-i18n="cardCalendarDesc">Timeline & growth stages</div>
+          </div>
+
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('soil')">
+            <div class="quick-card-icon">🧪</div>
+            <div class="quick-card-title" data-i18n="cardSoilTitle">Soil Health</div>
+            <div class="quick-card-desc" data-i18n="cardSoilDesc">NPK & soil testing tips</div>
+          </div>
+
+          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('schemes')">
+            <div class="quick-card-icon">🏛️</div>
+            <div class="quick-card-title" data-i18n="cardSchemesTitle">Govt Schemes</div>
+            <div class="quick-card-desc" data-i18n="cardSchemesDesc">PM-KISAN & subsidies</div>
+          </div>
+        </div>
+
+        <!-- Featured Highlights Grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-bottom:2.5rem;">
+          <!-- Highlight 1: AI Scanner Promo -->
+          <div style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="badge badge-harvest" style="margin-bottom:0.5rem;">📷 Smart Vision</span>
+              <h3 style="font-size:1.3rem; font-weight:800; color:var(--primary-900); margin-bottom:0.4rem;">
+                Spot Plant Diseases Before They Spread
+              </h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
+                Take a quick photo of an infected leaf. RythuMitra AI analyzes spectral discoloration, spots, and blight patterns to suggest certified organic and chemical management steps.
+              </p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="window.RythuNav.navigateTo('scanner')">
+              Try AI Leaf Scanner →
+            </button>
+          </div>
+
+          <!-- Highlight 2: Rythu Bharosa & Welfare -->
+          <div style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="badge badge-info" style="margin-bottom:0.5rem;">🏛️ Direct Benefit Transfer</span>
+              <h3 style="font-size:1.3rem; font-weight:800; color:var(--text-main); margin-bottom:0.4rem;">
+                Verify Your Subsidy Eligibility
+              </h3>
+              <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
+                Detailed eligibility criteria, required revenue documents (Passbook, CCRC), and application steps for YSR Rythu Bharosa (₹13,500/yr), PM-KISAN, and Micro-Irrigation Drip subsidies.
+              </p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="window.RythuNav.navigateTo('schemes')">
+              Explore All Schemes →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SCREEN 02: FARMER DASHBOARD ================= -->
+      <section id="view-dashboard" class="view-section">
+        <div id="dashboard-content"></div>
+      </section>
+
+      <!-- ================= SCREEN 03: CROPS GUIDE ================= -->
+      <section id="view-crops" class="view-section"></section>
+
+      <!-- ================= SCREEN 05: WEATHER ================= -->
+      <section id="view-weather" class="view-section"></section>
+
+      <!-- ================= SCREEN 06: MARKET PRICES ================= -->
+      <section id="view-market" class="view-section"></section>
+
+      <!-- ================= SCREEN 07: PEST & DISEASE ================= -->
+      <section id="view-diseases" class="view-section"></section>
+
+      <!-- ================= SCREEN 15: AI LEAF SCANNER ================= -->
+      <section id="view-scanner" class="view-section"></section>
+
+      <!-- ================= SCREEN 08: SCHEMES ================= -->
+      <section id="view-schemes" class="view-section"></section>
+
+      <!-- ================= SCREEN 09: MY FARM ================= -->
+      <section id="view-my-farm" class="view-section"></section>
+
+      <!-- ================= SCREEN 12: CROP CALENDAR ================= -->
+      <section id="view-calendar" class="view-section"></section>
+
+      <!-- ================= SOIL HEALTH GUIDE ================= -->
+      <section id="view-soil" class="view-section"></section>
+
+      <!-- ================= SCREEN 26: ADMIN PORTAL ================= -->
+      <section id="view-admin" class="view-section"></section>
+
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation (PRD Section 7 & 31) -->
+  <nav class="mobile-bottom-nav">
+    <ul class="mobile-nav-items">
+      <li class="mobile-nav-item active" data-view="landing">
+        <span class="mob-icon">🏠</span>
+        <span data-i18n="navHome">Home</span>
+      </li>
+      <li class="mobile-nav-item" data-view="crops">
+        <span class="mob-icon">🌱</span>
+        <span data-i18n="navCrops">Crops</span>
+      </li>
+      <li class="mobile-nav-item" data-view="market">
+        <span class="mob-icon">💰</span>
+        <span data-i18n="navMarket">Market</span>
+      </li>
+      <li class="mobile-nav-item" data-view="my-farm">
+        <span class="mob-icon">👨‍🌾</span>
+        <span data-i18n="navMyFarm">My Farm</span>
+      </li>
+      <li class="mobile-nav-item" data-view="more">
+        <span class="mob-icon">☰</span>
+        <span data-i18n="navMore">More</span>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ================= MODALS CONTAINER ================= -->
+
+  <!-- 1. Global Multi-Entity Search Modal (Ctrl+K) -->
+  <div id="searchModal" class="modal-overlay">
+    <div class="modal-container" style="max-width:580px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:0.5rem; flex:1;">
+          <span style="font-size:1.2rem;">🔍</span>
+          <input 
+            type="text" 
+            id="globalSearchInput" 
+            class="form-control" 
+            style="border:none; box-shadow:none; font-size:1.05rem;" 
+            placeholder="Search crops, diseases, schemes, markets..." 
+          />
+        </div>
+        <button class="modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="globalSearchResults" style="max-height:60vh; overflow-y:auto;">
+        <div style="text-align:center; padding:2rem; color:var(--text-subtle);">
+          Start typing to search crops, diseases, schemes, and mandi prices...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Dynamic Crop & Disease Detail Modal -->
+  <div id="cropDetailModal" class="modal-overlay">
+    <div class="modal-container" style="max-width:700px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🌾 Agronomic Information</h3>
+        <button class="modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="cropDetailModalContent"></div>
+    </div>
+  </div>
+
+  <!-- 3. Add Farm Modal (Screen 10 & 18) -->
+  <div id="addFarmModal" class="modal-overlay">
+    <div class="modal-container" style="max-width:520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">👨‍🌾 + Add Farm Parcel</h3>
+        <button class="modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <form id="addFarmForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Farm Parcel Name</label>
+            <input type="text" id="farmInputName" class="form-control" required placeholder="e.g. North Canal Farm" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location / Village / Mandal</label>
+            <input type="text" id="farmInputLocation" class="form-control" required placeholder="e.g. Kadapa (Vempalli Mandal)" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Total Land Area (Acres)</label>
+            <input type="number" step="0.1" id="farmInputArea" class="form-control" required placeholder="e.g. 2.5" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Soil Type</label>
+            <select id="farmInputSoil" class="form-control">
+              <option value="Red Sandy Loam">Red Sandy Loam (ఎర్ర ఇసుక నేలలు)</option>
+              <option value="Black Cotton Soil">Black Cotton Soil (నల్లరేగడి నేలలు)</option>
+              <option value="Alluvial Soil">Alluvial Soil (ఒండ్రు నేలలు)</option>
+              <option value="Clayey Loam">Clayey Loam (బంకమట్టి నేలలు)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Irrigation / Water Source</label>
+            <select id="farmInputWater" class="form-control">
+              <option value="Borewell (Solar Powered)">Borewell (Solar Powered)</option>
+              <option value="Borewell (Grid Electric)">Borewell (Grid Electric)</option>
+              <option value="Canal / River Lift">Canal / River Lift</option>
+              <option value="Open Well">Open Well</option>
+              <option value="Rainfed (Non-irrigated)">Rainfed (Non-irrigated)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuModals.closeAllModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save to Cloud Firestore</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Add Crop Modal (Screen 11 & 19) -->
+  <div id="addCropModal" class="modal-overlay">
+    <div class="modal-container" style="max-width:520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🌱 + Register Crop Cultivation</h3>
+        <button class="modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <form id="addCropForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Target Farm Parcel</label>
+            <select id="cropTargetFarmId" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Crop Name & Variety</label>
+            <select id="cropInputName" class="form-control">
+              <option value="Groundnut (వేరుశనగ - Bold Hybrid)">Groundnut (వేరుశనగ - Bold Hybrid)</option>
+              <option value="Paddy (వరి - BPT 5204 Samba)">Paddy (వరి - BPT 5204 Samba)</option>
+              <option value="Cotton (ప్రత్తి - BG-II)">Cotton (ప్రత్తి - BG-II)</option>
+              <option value="Red Chilli (మిరప - Teja)">Red Chilli (మిరప - Teja)</option>
+              <option value="Tomato (టమోటా - Hybrid F1)">Tomato (టమోటా - Hybrid F1)</option>
+              <option value="Maize (మొక్కజొన్న)">Maize (మొక్కజొన్న)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Area Cultivated (Acres)</label>
+            <input type="number" step="0.1" id="cropInputArea" class="form-control" required placeholder="e.g. 1.5" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sowing Date</label>
+            <input type="date" id="cropInputSowing" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Expected Harvest Date</label>
+            <input type="date" id="cropInputHarvest" class="form-control" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuModals.closeAllModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Crop</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Firebase Configuration Modal -->
+  <div id="firebaseModal" class="modal-overlay">
+    <div class="modal-container" style="max-width:560px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🔥 Firebase Live Configuration</h3>
+        <button class="modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <form id="firebaseConfigForm">
+        <div class="modal-body">
+          <div style="background:var(--bg-surface-alt); padding:1rem; border-radius:var(--radius-md); margin-bottom:1rem; font-size:0.85rem; color:var(--text-main);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem;">
+              <span>Authentication Mode:</span>
+              <strong style="color:#16a34a;">Local-First Hybrid & Firebase v10 Ready</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem;">
+              <span>Firestore Persistence:</span>
+              <strong style="color:#16a34a;">Active (Offline-First Storage)</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span>Hosting Status:</span>
+              <strong>firebase.json Configured</strong>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Custom Firebase Config (Optional JSON)</label>
+            <textarea id="firebaseConfigJson" class="form-control" rows="5" placeholder='{\n  "apiKey": "AIzaSy...",\n  "authDomain": "rythumitra.firebaseapp.com",\n  "projectId": "rythumitra-prod",\n  "storageBucket": "rythumitra.appspot.com"\n}'></textarea>
+            <small style="color:var(--text-subtle); display:block; margin-top:0.3rem;">
+              Paste your Firebase project credentials here to synchronize with a live Google Cloud Firestore instance.
+            </small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuModals.closeAllModals()">Close</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Configuration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Profile / Evaluator Role Switcher Modal -->
+  <div id="profileModal" class="modal-overlay">
+    <div class="modal-container" style="max-width:480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">👤 Farmer Profile & Roles</h3>
+        <button class="modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align:center; margin-bottom:1.5rem;">
+          <div style="width:72px; height:72px; border-radius:50%; background:var(--primary-100); color:var(--primary-800); display:inline-flex; align-items:center; justify-content:center; font-size:2.2rem; margin-bottom:0.5rem;">
+            👨‍🌾
+          </div>
+          <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main);">Ravi Kumar</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Kadapa, Andhra Pradesh • rythu.ravi@gmail.com</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:0.75rem;">
+          <button class="btn btn-secondary" style="width:100%; justify-content:flex-start;" onclick="window.RythuApp.switchUserRole('farmer')">
+            <span>🌾</span> <span>Continue as Demo Farmer (Ravi - Kadapa)</span>
+          </button>
+          <button class="btn btn-outline" style="width:100%; justify-content:flex-start;" onclick="window.RythuApp.switchUserRole('admin')">
+            <span>⚙️</span> <span>Switch to Agricultural Officer (Admin Evaluator)</span>
+          </button>
+          <button class="btn btn-outline" style="width:100%; justify-content:flex-start;" onclick="window.RythuI18n.toggle(); window.RythuModals.closeAllModals();">
+            <span>🌐</span> <span>Toggle Language (తెలుగు / English)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Notifications Drawer Modal -->
+  <div id="notificationsModal" class="modal-overlay">
+    <div class="modal-container" style="max-width:480px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🔔 Farm Alerts & Advisories</h3>
+        <button class="modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body" id="notificationsList" style="max-height:60vh; overflow-y:auto;"></div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" onclick="window.RythuFirebase.notificationService.markAllRead(); window.RythuApp.renderNotificationsList();">
+          Mark All as Read
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- JavaScript Libraries & Modules -->
+  <!-- 1. Data Catalogs -->
+  <script src="js/data/crops-data.js"></script>
+  <script src="js/data/diseases-data.js"></script>
+  <script src="js/data/schemes-data.js"></script>
+  <script src="js/data/markets-data.js"></script>
+  <script src="js/data/calendar-data.js"></script>
+  <script src="js/data/soil-data.js"></script>
+
+  <!-- 2. Services & Architecture -->
+  <script src="js/i18n.js"></script>
+  <script src="js/weather-service.js"></script>
+  <script src="js/firebase-service.js"></script>
+
+  <!-- 3. UI Components -->
+  <script src="js/components/nav.js"></script>
+  <script src="js/components/dashboard.js"></script>
+  <script src="js/components/crop-guide.js"></script>
+  <script src="js/components/weather-view.js"></script>
+  <script src="js/components/market-view.js"></script>
+  <script src="js/components/disease-scanner.js"></script>
+  <script src="js/components/schemes-view.js"></script>
+  <script src="js/components/my-farm.js"></script>
+  <script src="js/components/calendar-view.js"></script>
+  <script src="js/components/soil-view.js"></script>
+  <script src="js/components/admin-view.js"></script>
+  <script src="js/components/modals.js"></script>
+
+  <!-- 4. Main App Orchestrator -->
+  <script src="js/app.js"></script>
+</body>
+</html>
