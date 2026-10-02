@@ -4,6 +4,11 @@ chrome_debug_profile/
 chrome_debug_profile_9333/
 *.log
 
+# Credentials and Local Scripts
+.env
+.env.*
+safe_push.py
+
 # OS metadata
 Thumbs.db
 .DS_Store
