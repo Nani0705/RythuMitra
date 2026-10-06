@@ -7,20 +7,36 @@ window.RythuAuth = {
   currentUser: null,
 
   init() {
+    // Thorough sanitization of stored user objects in localStorage
+    ['rythu_auth_user', 'rythu_user'].forEach(key => {
+      const data = localStorage.getItem(key);
+      if (data) {
+        try {
+          const user = JSON.parse(data);
+          let modified = false;
+          if (user.avatar && typeof user.avatar === 'string' && (user.avatar.includes('<') || user.avatar.includes('http'))) {
+            const urlMatch = user.avatar.match(/https?:\/\/[^\s"']+/);
+            if (urlMatch && !user.photoURL) {
+              user.photoURL = urlMatch[0];
+            }
+            user.avatar = '👨‍🌾';
+            modified = true;
+          }
+          if (modified) {
+            localStorage.setItem(key, JSON.stringify(user));
+          }
+        } catch (e) {}
+      }
+    });
+
     // Load initial user session or default to farmer demo
     const saved = localStorage.getItem('rythu_auth_user');
     if (saved) {
       try {
         this.currentUser = JSON.parse(saved);
         this.selectedRole = this.currentUser.role || 'farmer';
-        // Clean up avatar if it contains raw HTML tag or extract photoURL
-        if (this.currentUser.avatar && this.currentUser.avatar.includes('http')) {
-          const match = this.currentUser.avatar.match(/src="([^"]+)"/);
-          if (match) {
-            this.currentUser.photoURL = match[1];
-          }
+        if (this.currentUser.avatar && (this.currentUser.avatar.includes('<') || this.currentUser.avatar.includes('http'))) {
           this.currentUser.avatar = '👨‍🌾';
-          this.saveSession();
         }
       } catch (e) {
         this.setDefaultFarmer();
@@ -277,12 +293,34 @@ window.RythuAuth = {
         headerUserName.textContent = firstName;
       }
       if (roleAvatar) {
-        if (this.currentUser.photoURL) {
-          roleAvatar.innerHTML = `<img src="${this.currentUser.photoURL}" alt="${this.currentUser.name || 'Avatar'}" />`;
-        } else if (this.currentUser.avatar && this.currentUser.avatar.includes('<img')) {
-          roleAvatar.innerHTML = this.currentUser.avatar;
+        roleAvatar.textContent = '';
+        roleAvatar.innerHTML = '';
+
+        let photo = this.currentUser.photoURL;
+        if (!photo && this.currentUser.avatar && this.currentUser.avatar.includes('http')) {
+          const match = this.currentUser.avatar.match(/https?:\/\/[^\s"']+/);
+          if (match) photo = match[0];
+        }
+
+        if (photo) {
+          const img = document.createElement('img');
+          img.src = photo;
+          img.alt = this.currentUser.name || 'Avatar';
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'cover';
+          img.style.borderRadius = '50%';
+          img.style.display = 'block';
+          img.onerror = () => {
+            roleAvatar.textContent = '👨‍🌾';
+          };
+          roleAvatar.appendChild(img);
         } else {
-          roleAvatar.textContent = this.currentUser.avatar || '👨‍🌾';
+          let emoji = this.currentUser.avatar;
+          if (!emoji || emoji.includes('<') || emoji.includes('http')) {
+            emoji = this.currentUser.role === 'admin' ? '🛡️' : (this.currentUser.role === 'expert' ? '🧑‍🌾' : '👨‍🌾');
+          }
+          roleAvatar.textContent = emoji;
         }
       }
       if (rolePill) {
