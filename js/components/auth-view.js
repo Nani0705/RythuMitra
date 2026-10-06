@@ -149,8 +149,44 @@ window.RythuAuth = {
     }, 400);
   },
 
-  handleGoogleSignIn() {
-    this.handleLogin();
+  async handleGoogleSignIn() {
+    const isTe = window.RythuI18n.currentLang === 'te';
+    if (window.RythuApp && window.RythuApp.showToast) {
+      window.RythuApp.showToast(isTe ? "గూగుల్ సైన్-ఇన్ పాపప్ తెరుచుకుంటోంది..." : "Opening Google Sign-In popup...", "info");
+    }
+
+    try {
+      if (window.RythuFirebase && window.RythuFirebase.authService) {
+        const user = await window.RythuFirebase.authService.signInWithGoogle();
+        this.currentUser = user;
+        this.selectedRole = 'farmer';
+        this.saveSession();
+        this.updateRoleUI();
+
+        const successMsg = isTe
+          ? `స్వాగతం, ${user.name}! గూగుల్ ద్వారా విజయవంతంగా లాగిన్ అయ్యారు.`
+          : `Welcome, ${user.name}! Signed in successfully with Google.`;
+        if (window.RythuApp && window.RythuApp.showToast) {
+          window.RythuApp.showToast(successMsg, "success");
+        }
+
+        setTimeout(() => {
+          window.RythuNav.navigateTo('dashboard');
+        }, 400);
+      } else {
+        this.handleLogin();
+      }
+    } catch (error) {
+      console.warn("Google Sign-In canceled or failed:", error);
+      if (error && error.code === 'auth/popup-closed-by-user') {
+        if (window.RythuApp && window.RythuApp.showToast) {
+          window.RythuApp.showToast(isTe ? "గూగుల్ సైన్-ఇన్ రద్దు చేయబడింది" : "Google Sign-In was cancelled", "warning");
+        }
+      } else {
+        // Fallback demo login
+        this.handleLogin();
+      }
+    }
   },
 
   handleRegister(e) {

@@ -97,6 +97,49 @@ window.RythuFirebase = {
   },
 
   init() {
+    // Initialize live Firebase App and Auth if SDK is loaded
+    if (typeof firebase !== 'undefined' && this.config && this.config.apiKey) {
+      try {
+        if (!firebase.apps.length) {
+          this.app = firebase.initializeApp(this.config);
+        } else {
+          this.app = firebase.app();
+        }
+        this.auth = firebase.auth();
+        this.isLive = true;
+        console.log("🔥 Live Firebase Auth initialized for project:", this.config.projectId);
+
+        // Listen for Firebase auth state changes
+        this.auth.onAuthStateChanged((user) => {
+          if (user) {
+            console.log("👤 Firebase Auth state active:", user.displayName, user.email);
+            const farmerUser = {
+              uid: user.uid,
+              name: user.displayName || 'Google Farmer',
+              email: user.email,
+              phone: user.phoneNumber || '+91 98480 22334',
+              role: 'farmer',
+              location: 'Kadapa, Andhra Pradesh',
+              landArea: '3 Acres',
+              soilType: 'Red Sandy Loam',
+              waterSource: 'Borewell (Solar Powered)',
+              avatar: user.photoURL ? `<img src="${user.photoURL}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />` : '👨‍🌾',
+              photoURL: user.photoURL
+            };
+            this.localState.currentUser = farmerUser;
+            localStorage.setItem('rythu_user', JSON.stringify(farmerUser));
+            localStorage.setItem('rythu_auth_user', JSON.stringify(farmerUser));
+            if (window.RythuAuth) {
+              window.RythuAuth.currentUser = farmerUser;
+              window.RythuAuth.updateRoleUI();
+            }
+          }
+        });
+      } catch (err) {
+        console.warn("Firebase App initialization warning:", err);
+      }
+    }
+
     // Load local storage overrides if present
     const savedFarms = localStorage.getItem('rythu_farms');
     if (savedFarms) {
@@ -106,15 +149,8 @@ window.RythuFirebase = {
     if (savedUser) {
       try { this.localState.currentUser = JSON.parse(savedUser); } catch(e) {}
     }
-    const savedConfig = localStorage.getItem('rythu_firebase_config');
-    if (savedConfig) {
-      try {
-        this.config = JSON.parse(savedConfig);
-        this.isConfigured = true;
-      } catch(e) {}
-    }
 
-    console.log("🌾 RythuMitra Firebase Layer initialized in Hybrid Offline-First Mode.");
+    console.log("🌾 RythuMitra Firebase Layer ready.");
   },
 
   // Save changes to persistent storage
@@ -133,6 +169,34 @@ window.RythuFirebase = {
       window.RythuFirebase.localState.currentUser.email = email;
       localStorage.setItem('rythu_user', JSON.stringify(window.RythuFirebase.localState.currentUser));
       return Promise.resolve(window.RythuFirebase.localState.currentUser);
+    },
+    async signInWithGoogle() {
+      if (typeof firebase !== 'undefined' && window.RythuFirebase.auth) {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        const result = await window.RythuFirebase.auth.signInWithPopup(provider);
+        const user = result.user;
+        const farmerUser = {
+          uid: user.uid,
+          name: user.displayName || 'Google Farmer',
+          email: user.email,
+          phone: user.phoneNumber || '+91 98480 22334',
+          role: 'farmer',
+          location: 'Kadapa, Andhra Pradesh',
+          landArea: '3 Acres',
+          soilType: 'Red Sandy Loam',
+          waterSource: 'Borewell (Solar Powered)',
+          avatar: user.photoURL ? `<img src="${user.photoURL}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />` : '👨‍🌾',
+          photoURL: user.photoURL
+        };
+        window.RythuFirebase.localState.currentUser = farmerUser;
+        localStorage.setItem('rythu_user', JSON.stringify(farmerUser));
+        localStorage.setItem('rythu_auth_user', JSON.stringify(farmerUser));
+        window.dispatchEvent(new CustomEvent('rythu:auth-changed'));
+        return farmerUser;
+      } else {
+        return this.loginAsDemo('farmer');
+      }
     },
     loginAsDemo(role = 'farmer') {
       if (role === 'admin') {
@@ -160,7 +224,12 @@ window.RythuFirebase = {
       window.dispatchEvent(new CustomEvent('rythu:auth-changed'));
       return Promise.resolve(window.RythuFirebase.localState.currentUser);
     },
-    logout() {
+    async logout() {
+      if (typeof firebase !== 'undefined' && window.RythuFirebase.auth) {
+        try {
+          await window.RythuFirebase.auth.signOut();
+        } catch(e) {}
+      }
       return Promise.resolve(true);
     }
   },
