@@ -123,7 +123,7 @@ window.RythuFirebase = {
               landArea: '3 Acres',
               soilType: 'Red Sandy Loam',
               waterSource: 'Borewell (Solar Powered)',
-              avatar: user.photoURL ? `<img src="${user.photoURL}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />` : '👨‍🌾',
+              avatar: '👨‍🌾',
               photoURL: user.photoURL
             };
             this.localState.currentUser = farmerUser;
@@ -186,7 +186,7 @@ window.RythuFirebase = {
           landArea: '3 Acres',
           soilType: 'Red Sandy Loam',
           waterSource: 'Borewell (Solar Powered)',
-          avatar: user.photoURL ? `<img src="${user.photoURL}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />` : '👨‍🌾',
+          avatar: '👨‍🌾',
           photoURL: user.photoURL
         };
         window.RythuFirebase.localState.currentUser = farmerUser;

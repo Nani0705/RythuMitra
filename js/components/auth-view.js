@@ -13,6 +13,15 @@ window.RythuAuth = {
       try {
         this.currentUser = JSON.parse(saved);
         this.selectedRole = this.currentUser.role || 'farmer';
+        // Clean up avatar if it contains raw HTML tag or extract photoURL
+        if (this.currentUser.avatar && this.currentUser.avatar.includes('http')) {
+          const match = this.currentUser.avatar.match(/src="([^"]+)"/);
+          if (match) {
+            this.currentUser.photoURL = match[1];
+          }
+          this.currentUser.avatar = '👨‍🌾';
+          this.saveSession();
+        }
       } catch (e) {
         this.setDefaultFarmer();
       }
@@ -263,8 +272,19 @@ window.RythuAuth = {
     const roleAvatar = document.getElementById('headerRoleAvatar');
 
     if (this.currentUser) {
-      if (headerUserName) headerUserName.innerText = this.currentUser.name.split(' ')[0];
-      if (roleAvatar) roleAvatar.innerText = this.currentUser.avatar || '👨‍🌾';
+      if (headerUserName) {
+        const firstName = (this.currentUser.name || 'Farmer').split(' ')[0];
+        headerUserName.textContent = firstName;
+      }
+      if (roleAvatar) {
+        if (this.currentUser.photoURL) {
+          roleAvatar.innerHTML = `<img src="${this.currentUser.photoURL}" alt="${this.currentUser.name || 'Avatar'}" />`;
+        } else if (this.currentUser.avatar && this.currentUser.avatar.includes('<img')) {
+          roleAvatar.innerHTML = this.currentUser.avatar;
+        } else {
+          roleAvatar.textContent = this.currentUser.avatar || '👨‍🌾';
+        }
+      }
       if (rolePill) {
         if (this.currentUser.role === 'farmer') rolePill.innerText = 'Farmer';
         else if (this.currentUser.role === 'expert') rolePill.innerText = 'Expert';

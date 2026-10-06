@@ -184,12 +184,14 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.8rem 0.35rem 0.4rem;
+  padding: 0.3rem 0.75rem 0.3rem 0.35rem;
   background: var(--bg-surface-alt);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: all var(--transition-fast);
+  max-width: 220px;
+  white-space: nowrap;
 }
 
 .user-profile-chip:hover {
@@ -208,12 +210,26 @@
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
 .user-name-label {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90px;
 }
 
 /* Sidebar Navigation (Desktop) */

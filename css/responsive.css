@@ -63,6 +63,10 @@
     display: none;
   }
 
+  .role-pill-badge {
+    display: none;
+  }
+
   .hero-card {
     min-height: 380px;
     margin-bottom: 1.5rem;
