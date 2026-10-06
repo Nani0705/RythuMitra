@@ -61,10 +61,52 @@
         <span id="notifDot" class="notif-badge-dot"></span>
       </button>
 
-      <!-- User Profile Chip -->
-      <div id="userProfileChip" class="user-profile-chip" title="Farmer Profile & Settings">
-        <div class="user-avatar">👨‍🌾</div>
-        <div class="user-name-label" id="headerUserName">Ravi</div>
+      <!-- User Profile Chip & Persona Switcher -->
+      <div style="position:relative;">
+        <div id="userProfileChip" class="user-profile-chip" title="Switch User Role & Profile" style="cursor:pointer;">
+          <div class="user-avatar" id="headerRoleAvatar">👨‍🌾</div>
+          <div class="user-name-label" id="headerUserName">Ravi</div>
+          <span class="role-pill-badge" id="rolePillText" style="font-size:0.7rem; padding:0.15rem 0.45rem; background:var(--primary-100); color:var(--primary-800); border-radius:99px; font-weight:700;">Farmer</span>
+          <span style="font-size:0.65rem; color:var(--text-muted); margin-left:0.1rem;">▼</span>
+        </div>
+
+        <!-- Role Switcher Dropdown Menu -->
+        <div id="headerRoleDropdown" class="header-role-dropdown">
+          <div class="role-dropdown-header">
+            <span style="font-size:0.72rem; text-transform:uppercase; font-weight:800; color:var(--text-muted); letter-spacing:0.05em;">Active Persona / పాత్ర మార్పు</span>
+          </div>
+          <div class="role-dropdown-item" onclick="window.RythuAuth.switchRole('farmer'); window.RythuNav.closeRoleMenu();">
+            <span style="font-size:1.3rem;">👨‍🌾</span>
+            <div>
+              <div style="font-weight:700; font-size:0.86rem; color:var(--text-main);">Farmer (రైతు)</div>
+              <div style="font-size:0.74rem; color:var(--text-muted);">Ravi Kumar • Kadapa (3 Acres)</div>
+            </div>
+          </div>
+          <div class="role-dropdown-item" onclick="window.RythuAuth.switchRole('expert'); window.RythuNav.closeRoleMenu();">
+            <span style="font-size:1.3rem;">🧑‍🌾</span>
+            <div>
+              <div style="font-weight:700; font-size:0.86rem; color:var(--text-main);">Agriculture Expert (నిపుణుడు)</div>
+              <div style="font-size:0.74rem; color:var(--text-muted);">Dr. K. Ramesh • ANGRAU</div>
+            </div>
+          </div>
+          <div class="role-dropdown-item" onclick="window.RythuAuth.switchRole('admin'); window.RythuNav.closeRoleMenu();">
+            <span style="font-size:1.3rem;">🛡️</span>
+            <div>
+              <div style="font-weight:700; font-size:0.86rem; color:var(--text-main);">Platform Admin (అడ్మినిస్ట్రేటర్)</div>
+              <div style="font-size:0.74rem; color:var(--text-muted);">SuperAdmin • System Governance</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--border-subtle); margin-top:0.35rem; padding-top:0.35rem;">
+            <div class="role-dropdown-item" onclick="window.RythuNav.navigateTo('login'); window.RythuNav.closeRoleMenu();">
+              <span style="font-size:1.1rem;">🔐</span>
+              <span style="font-size:0.84rem; font-weight:600; color:var(--text-main);">Switch Account / Login</span>
+            </div>
+            <div class="role-dropdown-item" onclick="window.RythuAuth.logout(); window.RythuNav.closeRoleMenu();">
+              <span style="font-size:1.1rem;">🚪</span>
+              <span style="font-size:0.84rem; font-weight:600; color:#ef4444;">Sign Out</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -337,6 +379,356 @@
       <!-- ================= SCREEN 26: ADMIN PORTAL ================= -->
       <section id="view-admin" class="view-section"></section>
 
+      <!-- ================= SCREEN: AGRICULTURE EXPERT PORTAL ================= -->
+      <section id="view-expert" class="view-section"></section>
+
+      <!-- ================= SCREEN: LOGIN / ROLE SELECTION ================= -->
+      <section id="view-login" class="view-section">
+        <div class="auth-split-layout">
+          <!-- Left Visual Hero Column (Desktop) -->
+          <div class="auth-split-left">
+            <div class="auth-split-left-overlay"></div>
+            <div class="auth-left-content">
+              <div class="auth-left-brand">
+                <div class="auth-left-brand-icon">🌾</div>
+                <div>
+                  <h2 style="font-size:1.75rem; font-weight:800; color:#ffffff; margin:0; line-height:1.2;">RythuMitra</h2>
+                  <span style="font-size:0.95rem; color:var(--accent-300); font-weight:600;">రైతుమిత్ర • Digital Farming Companion</span>
+                </div>
+              </div>
+              <h1 class="auth-hero-title">
+                Smart Farming.<br />
+                Better Information.
+              </h1>
+              <p class="auth-hero-tagline">
+                “సాగులో స్మార్ట్ సాంకేతికత — రైతు చేతిలో శాస్త్రీయ సమాచారం”
+              </p>
+              <p class="auth-hero-desc">
+                Empowering Indian farmers, agronomists, and agricultural officers with real-time field intelligence, AI leaf diagnostics, and live APMC mandi rates.
+              </p>
+              <div class="auth-features-list">
+                <div class="auth-feature-item">
+                  <div class="auth-feature-badge">🌱</div>
+                  <span>Precision crop cultivation guides for Andhra Pradesh & Telangana soils</span>
+                </div>
+                <div class="auth-feature-item">
+                  <div class="auth-feature-badge">🌦️</div>
+                  <span>Hyperlocal live weather & 7-day spray feasibility forecasts</span>
+                </div>
+                <div class="auth-feature-item">
+                  <div class="auth-feature-badge">💰</div>
+                  <span>Live APMC mandi bhav & e-NAM minimum support price analytics</span>
+                </div>
+                <div class="auth-feature-item">
+                  <div class="auth-feature-badge">🔬</div>
+                  <span>Instant AI pest/disease diagnosis with university expert advisory</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Left Footer Badge -->
+            <div style="position:relative; z-index:2; font-size:0.85rem; color:rgba(255,255,255,0.75); display:flex; align-items:center; justify-content:space-between;">
+              <span>Verified with ANGRAU Agronomy Protocols</span>
+              <span>🔒 256-Bit SSL Secured</span>
+            </div>
+          </div>
+
+          <!-- Right Authentication Panel -->
+          <div class="auth-split-right">
+            <div class="auth-card-wrapper">
+              <!-- Top Language & Brand Bar on Mobile -->
+              <div class="auth-header-top">
+                <div style="display:flex; align-items:center; gap:0.6rem;">
+                  <span style="font-size:1.6rem;">🌾</span>
+                  <span style="font-weight:800; font-size:1.2rem; color:var(--primary-800);">RythuMitra</span>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuI18n.toggle();" style="border-radius:var(--radius-pill); font-size:0.78rem;">
+                  🌐 <span id="authLangLabel">తెలుగు</span>
+                </button>
+              </div>
+
+              <h2 class="auth-title">Welcome to RythuMitra</h2>
+              <p class="auth-subtitle">రైతుమిత్రకి స్వాగతం — Choose your role to access customized agricultural tools and services.</p>
+
+              <!-- Role Selection Cards -->
+              <span class="role-select-label">Select Your Persona / మీ పాత్రను ఎంచుకోండి:</span>
+              <div class="role-cards-container">
+                <!-- 1. Farmer Card -->
+                <div class="role-card selected" data-role="farmer" tabindex="0" role="button" aria-label="Select Farmer Role">
+                  <div class="role-icon-box">👨‍🌾</div>
+                  <div class="role-details">
+                    <div class="role-name">Farmer (రైతు)</div>
+                    <div class="role-desc">Manage crops, soil health, weather advisories & live market prices</div>
+                  </div>
+                  <div class="role-radio-check">✓</div>
+                </div>
+
+                <!-- 2. Expert Card -->
+                <div class="role-card" data-role="expert" tabindex="0" role="button" aria-label="Select Agriculture Expert Role">
+                  <div class="role-icon-box">🧑‍🌾</div>
+                  <div class="role-details">
+                    <div class="role-name">Agriculture Expert (వ్యవసాయ నిపుణుడు)</div>
+                    <div class="role-desc">Answer farmer queries, review disease reports & prescribe advisories</div>
+                  </div>
+                  <div class="role-radio-check">✓</div>
+                </div>
+
+                <!-- 3. Admin Card -->
+                <div class="role-card" data-role="admin" tabindex="0" role="button" aria-label="Select Platform Admin Role">
+                  <div class="role-icon-box">🛡️</div>
+                  <div class="role-details">
+                    <div class="role-name">Administrator (అడ్మినిస్ట్రేటర్)</div>
+                    <div class="role-desc">Platform governance, user management, market updates & content approval</div>
+                  </div>
+                  <div class="role-radio-check">✓</div>
+                </div>
+              </div>
+
+              <!-- Quick Demo Credentials Box -->
+              <div class="quick-demo-box">
+                <div class="quick-demo-title">⚡ 1-Click Instant Demo Login:</div>
+                <div class="quick-demo-buttons">
+                  <button type="button" class="demo-chip-btn" data-demo-role="farmer">👨‍🌾 Demo Farmer (Ravi - Kadapa)</button>
+                  <button type="button" class="demo-chip-btn" data-demo-role="expert">🧑‍🌾 Demo Expert (Dr. Ramesh)</button>
+                  <button type="button" class="demo-chip-btn" data-demo-role="admin">🛡️ Demo Admin (SuperAdmin)</button>
+                </div>
+              </div>
+
+              <!-- Login Form -->
+              <form id="loginForm">
+                <div class="auth-input-group">
+                  <label class="auth-label" for="loginIdentifier">Mobile Number or Email / మొబైల్ లేదా ఈమెయిల్</label>
+                  <div class="auth-input-wrapper">
+                    <input 
+                      type="text" 
+                      id="loginIdentifier" 
+                      class="auth-input" 
+                      required 
+                      value="ravi.farmer@rythumitra.in"
+                      placeholder="e.g. +91 98480 22334 or farmer@rythumitra.in" 
+                    />
+                  </div>
+                </div>
+
+                <div class="auth-input-group">
+                  <label class="auth-label" for="loginPassword">Password / పాస్‌వర్డ్</label>
+                  <div class="auth-input-wrapper">
+                    <input 
+                      type="password" 
+                      id="loginPassword" 
+                      class="auth-input" 
+                      required 
+                      value="farmer@123"
+                      placeholder="Enter password" 
+                    />
+                    <button type="button" id="pwdToggleBtn" class="auth-password-toggle" aria-label="Toggle password visibility">
+                      👁️
+                    </button>
+                  </div>
+                </div>
+
+                <div class="auth-options-row">
+                  <label class="auth-remember">
+                    <input type="checkbox" id="rememberMeCheckbox" checked />
+                    <span>Remember me on this device</span>
+                  </label>
+                  <a class="auth-forgot" onclick="window.RythuApp.showToast('Password reset link sent to registered mobile/email!', 'info')">
+                    Forgot password?
+                  </a>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%; padding:0.85rem; font-size:1rem; justify-content:center; margin-bottom:1rem; border-radius:var(--radius-pill);">
+                  <span>🚀</span> <span>Sign In to Dashboard / డాష్‌బోర్డ్‌లోకి ప్రవేశించండి</span>
+                </button>
+              </form>
+
+              <!-- Social Login Divider -->
+              <div class="auth-divider">
+                <span>Or continue with</span>
+              </div>
+
+              <button type="button" id="googleSignInBtn" class="btn-google">
+                <svg width="18" height="18" viewBox="0 0 18 18">
+                  <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.616z"/>
+                  <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+                  <path fill="#FBBC05" d="M3.964 10.707c-.18-.54-.282-1.117-.282-1.707s.102-1.167.282-1.707V4.961H.957C.347 6.173 0 7.547 0 9s.347 2.827.957 4.039l3.007-2.332z"/>
+                  <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z"/>
+                </svg>
+                <span>Continue with Google</span>
+              </button>
+
+              <!-- Footer Registration Link -->
+              <div style="text-align:center; margin-top:1.5rem; font-size:0.9rem; color:var(--text-muted);">
+                New farmer? 
+                <a style="color:var(--primary-700); font-weight:800; text-decoration:underline; cursor:pointer;" data-view="register">
+                  Register your farm here (రైతు నమోదు)
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SCREEN: FARMER REGISTRATION ================= -->
+      <section id="view-register" class="view-section">
+        <div style="min-height:100vh; background:var(--bg-page); padding:2.5rem 1rem; display:flex; justify-content:center; align-items:center;">
+          <div style="width:100%; max-width:680px; background:#ffffff; border-radius:var(--radius-xl); border:1px solid var(--border-subtle); box-shadow:var(--shadow-elevated); padding:2.5rem 2rem;">
+            
+            <!-- Register Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:1px solid var(--border-subtle); padding-bottom:1rem;">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <div style="width:48px; height:48px; border-radius:var(--radius-md); background:var(--primary-100); color:var(--primary-800); display:flex; align-items:center; justify-content:center; font-size:1.6rem;">
+                  👨‍🌾
+                </div>
+                <div>
+                  <h2 style="font-size:1.45rem; font-weight:800; color:var(--primary-900); margin:0;">Farmer Registration</h2>
+                  <span style="font-size:0.85rem; color:var(--text-muted);">రైతు నమోదు • Digital Farm Profile Creation</span>
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" data-view="login" style="border-radius:var(--radius-pill);">
+                ← Back to Login
+              </button>
+            </div>
+
+            <!-- Farmer Registration Form with 11 Fields -->
+            <form id="registrationForm">
+              <!-- Avatar Picker -->
+              <div style="margin-bottom:1.25rem; text-align:center;">
+                <label class="auth-label" style="text-align:center;">Choose Profile Avatar / ప్రొఫైల్ చిహ్నం:</label>
+                <div style="display:flex; justify-content:center; gap:1rem; margin-top:0.4rem;">
+                  <label style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:0.25rem;">
+                    <input type="radio" name="farmerAvatar" value="👨‍🌾" checked />
+                    <span style="font-size:2rem; padding:0.4rem 0.6rem; background:var(--primary-50); border-radius:50%; border:2px solid var(--primary-600);">👨‍🌾</span>
+                    <span style="font-size:0.75rem; font-weight:700;">Male Farmer</span>
+                  </label>
+                  <label style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:0.25rem;">
+                    <input type="radio" name="farmerAvatar" value="👩‍🌾" />
+                    <span style="font-size:2rem; padding:0.4rem 0.6rem; background:var(--primary-50); border-radius:50%; border:2px solid var(--border-subtle);">👩‍🌾</span>
+                    <span style="font-size:0.75rem; font-weight:700;">Female Farmer</span>
+                  </label>
+                  <label style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:0.25rem;">
+                    <input type="radio" name="farmerAvatar" value="🚜" />
+                    <span style="font-size:2rem; padding:0.4rem 0.6rem; background:var(--primary-50); border-radius:50%; border:2px solid var(--border-subtle);">🚜</span>
+                    <span style="font-size:0.75rem; font-weight:700;">Mechanized Farm</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="register-grid">
+                <!-- 1. Full Name -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regName">1. Full Name / పూర్తి పేరు *</label>
+                  <input type="text" id="regName" class="auth-input" required placeholder="e.g. Ravi Kumar" value="Ravi Kumar" />
+                </div>
+
+                <!-- 2. Mobile Number -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regPhone">2. Mobile Number / మొబైల్ నంబర్ *</label>
+                  <input type="tel" id="regPhone" class="auth-input" required placeholder="e.g. +91 98480 22334" value="+91 98480 22334" />
+                </div>
+
+                <!-- 3. Email Address -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regEmail">3. Email Address (Optional)</label>
+                  <input type="email" id="regEmail" class="auth-input" placeholder="e.g. ravi.farmer@gmail.com" value="ravi.farmer@rythumitra.in" />
+                </div>
+
+                <!-- 4. State -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regState">4. State / రాష్ట్రం *</label>
+                  <select id="regState" class="auth-input" required>
+                    <option value="Andhra Pradesh" selected>Andhra Pradesh (ఆంధ్రప్రదేశ్)</option>
+                    <option value="Telangana">Telangana (తెలంగాణ)</option>
+                    <option value="Karnataka">Karnataka (కర్ణాటక)</option>
+                  </select>
+                </div>
+
+                <!-- 5. District -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regDistrict">5. District / జిల్లా *</label>
+                  <select id="regDistrict" class="auth-input" required>
+                    <option value="Kadapa" selected>YSR Kadapa (వైఎస్ఆర్ కడప)</option>
+                    <option value="Guntur">Guntur (గుంటూరు)</option>
+                    <option value="Kurnool">Kurnool (కర్నూలు)</option>
+                    <option value="Anantapur">Anantapur (అనంతపురం)</option>
+                    <option value="Chittoor">Chittoor (చిత్తూరు)</option>
+                    <option value="Prakasam">Prakasam (ప్రకాశం)</option>
+                    <option value="Krishna">Krishna (కృష్ణా)</option>
+                  </select>
+                </div>
+
+                <!-- 6. Mandal / Taluk -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regMandal">6. Mandal / Taluk (మండలం) *</label>
+                  <input type="text" id="regMandal" class="auth-input" required placeholder="e.g. Vempalli" value="Vempalli" />
+                </div>
+
+                <!-- 7. Village -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regVillage">7. Village / గ్రామం *</label>
+                  <input type="text" id="regVillage" class="auth-input" required placeholder="e.g. Alavalapadu" value="Alavalapadu" />
+                </div>
+
+                <!-- 8. Land Area -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regLand">8. Total Land Area (Acres) / భూమి వైశాల్యం *</label>
+                  <input type="text" id="regLand" class="auth-input" required placeholder="e.g. 3 Acres" value="3 Acres" />
+                </div>
+
+                <!-- 9. Primary Soil Type -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regSoil">9. Soil Type / నేల రకం *</label>
+                  <select id="regSoil" class="auth-input" required>
+                    <option value="Red Sandy Loam" selected>Red Sandy Loam (ఎర్ర ఇసుక నేలలు)</option>
+                    <option value="Black Cotton Soil">Black Cotton Soil (నల్లరేగడి నేలలు)</option>
+                    <option value="Alluvial Soil">Alluvial Soil (ఒండ్రు నేలలు)</option>
+                    <option value="Clayey Loam">Clayey Loam (బంకమట్టి నేలలు)</option>
+                  </select>
+                </div>
+
+                <!-- 10. Irrigation Source -->
+                <div class="auth-input-group">
+                  <label class="auth-label" for="regWater">10. Irrigation Source / నీటి వనరు *</label>
+                  <select id="regWater" class="auth-input" required>
+                    <option value="Borewell (Solar Powered)" selected>Borewell (Solar Powered)</option>
+                    <option value="Borewell (Grid Electric)">Borewell (Grid Electric)</option>
+                    <option value="Canal / River Lift">Canal / River Lift</option>
+                    <option value="Rainfed (Non-irrigated)">Rainfed (Non-irrigated)</option>
+                  </select>
+                </div>
+
+                <!-- 11. Main Crop Cultivated -->
+                <div class="auth-input-group register-grid-full">
+                  <label class="auth-label" for="regCrop">11. Primary Cultivated Crop / ప్రధాన పంట *</label>
+                  <select id="regCrop" class="auth-input" required>
+                    <option value="Groundnut (వేరుశనగ)" selected>Groundnut (వేరుశనగ - Bold Hybrid)</option>
+                    <option value="Paddy (వరి)">Paddy (వరి - BPT 5204 Samba)</option>
+                    <option value="Red Chilli (మిరప)">Red Chilli (మిరప - Teja Guntur)</option>
+                    <option value="Cotton (ప్రత్తి)">Cotton (ప్రత్తి - BG-II)</option>
+                    <option value="Tomato (టమోటా)">Tomato (టమోటా - Hybrid F1)</option>
+                    <option value="Maize (మొక్కజొన్న)">Maize (మొక్కజొన్న)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div style="margin-top:1.5rem;">
+                <button type="submit" class="btn btn-primary" style="width:100%; padding:0.9rem; font-size:1.05rem; justify-content:center; border-radius:var(--radius-pill);">
+                  <span>🌾</span> <span>Create Farmer Account / ఖాతా సృష్టించండి</span>
+                </button>
+              </div>
+
+              <div style="text-align:center; margin-top:1rem; font-size:0.88rem; color:var(--text-muted);">
+                Already have an account? 
+                <a style="color:var(--primary-700); font-weight:800; cursor:pointer;" data-view="login">
+                  Sign in here
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -602,8 +994,10 @@
   <script src="js/firebase-service.js"></script>
 
   <!-- 3. UI Components -->
+  <script src="js/components/auth-view.js"></script>
   <script src="js/components/nav.js"></script>
   <script src="js/components/dashboard.js"></script>
+  <script src="js/components/expert-view.js"></script>
   <script src="js/components/crop-guide.js"></script>
   <script src="js/components/weather-view.js"></script>
   <script src="js/components/market-view.js"></script>

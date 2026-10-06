@@ -171,7 +171,22 @@ window.RYTHU_TRANSLATIONS = {
     cancel: "Cancel",
     close: "Close",
     loading: "Loading...",
-    rbkHelp: "Call Kisan Call Center (Toll Free: 1800-180-1551) or visit local RBK."
+    rbkHelp: "Call Kisan Call Center (Toll Free: 1800-180-1551) or visit local RBK.",
+
+    // Auth & Roles
+    authWelcome: "Welcome to RythuMitra",
+    authSubtitle: "Sign in to access your personalized dashboard.",
+    roleFarmer: "Farmer",
+    roleFarmerDesc: "Manage your farm and access farming information",
+    roleExpert: "Agriculture Expert",
+    roleExpertDesc: "Support farmers with agricultural knowledge",
+    roleAdmin: "Administrator",
+    roleAdminDesc: "Manage platform content and users",
+    btnSignIn: "Sign In",
+    btnCreateFarmerAcc: "Create Farmer Account",
+    btnContinueGoogle: "Continue with Google",
+    regTitle: "Create Your Farmer Account",
+    regSubtitle: "Join thousands of Indian farmers using smart digital agriculture"
   },
 
   te: {
@@ -342,7 +357,22 @@ window.RYTHU_TRANSLATIONS = {
     cancel: "రద్దు",
     close: "మూసివేయి",
     loading: "లోడ్ అవుతోంది...",
-    rbkHelp: "కిసాన్ కాల్ సెంటర్ (ఉచిత నం: 1800-180-1551) లేదా సమీప ఆర్బీకేని సంప్రదించండి."
+    rbkHelp: "కిసాన్ కాల్ సెంటర్ (ఉచిత నం: 1800-180-1551) లేదా సమీప ఆర్బీకేని సంప్రదించండి.",
+
+    // Auth & Roles
+    authWelcome: "రైతుమిత్రకు స్వాగతం",
+    authSubtitle: "మీ వ్యక్తిగత డాష్‌బోర్డ్‌ను యాక్సెస్ చేయడానికి సైన్ ఇన్ చేయండి.",
+    roleFarmer: "రైతు",
+    roleFarmerDesc: "మీ పొలాన్ని నిర్వహించండి మరియు సాగు సమాచారాన్ని పొందండి",
+    roleExpert: "వ్యవసాయ నిపుణులు",
+    roleExpertDesc: "రైతులకు శాస్త్రీయ వ్యవసాయ సలహాలు అందించండి",
+    roleAdmin: "అడ్మినిస్ట్రేటర్",
+    roleAdminDesc: "కంటెంట్ మరియు వినియోగదారులను నిర్వహించండి",
+    btnSignIn: "సైన్ ఇన్",
+    btnCreateFarmerAcc: "రైతు ఖాతాను సృష్టించండి",
+    btnContinueGoogle: "గూగుల్ తో కొనసాగించండి",
+    regTitle: "మీ రైతు ఖాతాను సృష్టించండి",
+    regSubtitle: "స్మార్ట్ డిజిటల్ వ్యవసాయం కోసం వేలాది మంది రైతులతో చేరండి"
   }
 };
 

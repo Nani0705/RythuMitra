@@ -131,6 +131,38 @@
   .timeline-track {
     left: 21px;
   }
+
+  .auth-split-layout {
+    flex-direction: column;
+  }
+
+  .auth-split-left {
+    min-height: 240px;
+    flex: none;
+    padding: 2rem 1.5rem;
+  }
+
+  .auth-hero-title {
+    font-size: 1.85rem;
+  }
+
+  .auth-hero-desc,
+  .auth-features-list {
+    display: none;
+  }
+
+  .auth-split-right {
+    min-height: auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .register-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .register-grid-full {
+    grid-column: span 1;
+  }
 }
 
 /* Touch Device Ergonomics */

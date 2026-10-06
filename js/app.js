@@ -9,11 +9,15 @@ window.RythuApp = {
     // Initialize Multilingual system first
     window.RythuI18n.init();
 
+    // Initialize Role-Based Authentication
+    if (window.RythuAuth) window.RythuAuth.init();
+
     // Initialize Navigation & Routing
     window.RythuNav.init();
 
     // Initialize Views
     if (window.RythuDashboard) window.RythuDashboard.init();
+    if (window.RythuExpert) window.RythuExpert.init();
     if (window.RythuCropGuide) window.RythuCropGuide.init();
     if (window.RythuWeatherView) window.RythuWeatherView.init();
     if (window.RythuMarketView) window.RythuMarketView.init();
@@ -36,6 +40,12 @@ window.RythuApp = {
       }
       if (view === 'weather' && window.RythuWeatherView) {
         window.RythuWeatherView.loadWeatherData();
+      }
+      if (view === 'expert' && window.RythuExpert) {
+        window.RythuExpert.render();
+      }
+      if (view === 'admin' && window.RythuAdminView) {
+        window.RythuAdminView.render();
       }
     });
 
@@ -103,17 +113,8 @@ window.RythuApp = {
   },
 
   switchUserRole(role) {
-    window.RythuFirebase.authService.loginAsDemo(role);
-    const isTe = window.RythuI18n.currentLang === 'te';
-    window.RythuModals.closeAllModals();
-    this.showToast(role === 'admin' 
-      ? (isTe ? "అగ్రికల్చరల్ ఆఫీసర్ (అడ్మిన్) మోడ్ ప్రారంభమైంది" : "Switched to Agricultural Officer (Admin Evaluator) Mode") 
-      : (isTe ? "రైతు రవి (కడప) ప్రొఫైల్ లోకి మారారు" : "Switched to Farmer Ravi (Kadapa) Profile")
-    );
-    if (role === 'admin') {
-      window.RythuNav.navigateTo('admin');
-    } else {
-      window.RythuNav.navigateTo('dashboard');
+    if (window.RythuAuth) {
+      window.RythuAuth.switchRole(role);
     }
   }
 };
