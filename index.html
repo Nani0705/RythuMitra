@@ -14,10 +14,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/stitch-theme.css?v=2.2" />
-  <link rel="stylesheet" href="css/style.css?v=2.2" />
-  <link rel="stylesheet" href="css/components.css?v=2.2" />
-  <link rel="stylesheet" href="css/responsive.css?v=2.2" />
+  <link rel="stylesheet" href="css/stitch-theme.css?v=3.0" />
+  <link rel="stylesheet" href="css/style.css?v=3.0" />
+  <link rel="stylesheet" href="css/components.css?v=3.0" />
+  <link rel="stylesheet" href="css/responsive.css?v=3.0" />
 </head>
 <body>
 
@@ -220,127 +220,515 @@
     <!-- Main Dynamic Content Views -->
     <main class="app-main">
 
-      <!-- ================= SCREEN 01: LANDING PAGE ================= -->
+      <!-- ================= SCREEN 01: MAIN LANDING PAGE ================= -->
       <section id="view-landing" class="view-section active">
-        <!-- Hero Section -->
-        <div class="hero-card">
-          <img src="assets/images/hero_farmer_field.jpg" alt="Indian Farmer in lush green fields" class="hero-bg-img" />
-          <div class="hero-overlay"></div>
-          <div class="hero-content">
-            <div class="hero-tag">
-              <span>🌾</span> <span data-i18n="heroTag">Smart Digital Agriculture Platform</span>
+        <div class="landing-page-wrap">
+
+          <!-- 1. Top Public Sticky Navbar -->
+          <nav class="landing-navbar">
+            <div class="landing-nav-inner">
+              <!-- Brand Logo -->
+              <div class="landing-brand" onclick="window.RythuNav.navigateTo('landing')">
+                <div class="landing-brand-logo">🌾</div>
+                <div class="landing-brand-text">
+                  <h1>RythuMitra</h1>
+                  <span>రైతుమిత్ర • Smart Farming Companion</span>
+                </div>
+              </div>
+
+              <!-- Desktop Nav Links -->
+              <ul class="landing-nav-links">
+                <li><a onclick="document.getElementById('landingFeatures').scrollIntoView({behavior:'smooth'})"><span>⚡</span> <span>Features</span></a></li>
+                <li><a onclick="document.getElementById('landingPersonas').scrollIntoView({behavior:'smooth'})"><span>👥</span> <span>Roles</span></a></li>
+                <li><a onclick="window.RythuNav.navigateTo('crops')"><span>🌱</span> <span>Crops</span></a></li>
+                <li><a onclick="window.RythuNav.navigateTo('weather')"><span>🌦️</span> <span>Weather</span></a></li>
+                <li><a onclick="window.RythuNav.navigateTo('market')"><span>💰</span> <span>Mandi Rates</span></a></li>
+                <li><a onclick="window.RythuNav.navigateTo('schemes')"><span>🏛️</span> <span>Schemes</span></a></li>
+              </ul>
+
+              <!-- Nav Right Actions -->
+              <div class="landing-nav-actions">
+                <!-- Language Toggle -->
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuI18n.toggle();" style="border-radius:99px; font-weight:700; font-size:0.82rem; padding:0.45rem 0.85rem;">
+                  🌐 <span class="landingLangLabel">తెలుగు</span>
+                </button>
+
+                <!-- Active Session Shortcut Button (if already logged in) -->
+                <button id="landingNavDashboardBtn" class="btn btn-secondary btn-sm" style="display:none; border-radius:99px; font-weight:700;">
+                  <span>📊</span> <span>Open Dashboard →</span>
+                </button>
+
+                <!-- PRIMARY LOGIN BUTTON -->
+                <button type="button" class="btn-landing-login" onclick="window.RythuNav.navigateTo('login')" title="Directs to Role-Based Login Page">
+                  <span>🔐</span>
+                  <span>Sign In / లాగిన్</span>
+                </button>
+
+                <!-- Register Button -->
+                <button type="button" class="btn-landing-register" onclick="window.RythuNav.navigateTo('register')" title="Create a Free Farmer Account">
+                  <span>🌱</span>
+                  <span>Register</span>
+                </button>
+              </div>
             </div>
-            <h1 class="hero-title" data-i18n="heroTitle">
-              Smart Farming. Better Information.
-            </h1>
-            <p class="hero-subtitle" data-i18n="heroSubtitle">
-              Everything you need for your farm, in one accessible place. Verified agronomic advisory, live weather, mandi prices, and digital farm management.
-            </p>
-            <div class="hero-actions">
-              <button class="btn btn-primary btn-lg" onclick="window.RythuNav.navigateTo('crops')">
-                <span data-i18n="btnExploreCrops">🌱 Explore Crops</span>
-              </button>
-              <button class="btn btn-accent btn-lg" onclick="window.RythuNav.navigateTo('dashboard')">
-                <span>📊</span> <span>Open Farmer Dashboard</span>
-              </button>
-              <button class="btn btn-secondary btn-lg" onclick="window.RythuNav.navigateTo('my-farm')">
-                <span data-i18n="btnMyFarm">👨‍🌾 My Farm</span>
-              </button>
+          </nav>
+
+          <!-- 2. Hero Section with Background Imagery -->
+          <header class="landing-hero">
+            <img src="assets/images/hero_farmer_field.jpg" alt="Lush green agricultural farm fields in Andhra Pradesh" class="landing-hero-bg" />
+            <div class="landing-hero-inner">
+              <div class="landing-hero-badge">
+                <span>🌾</span> <span>Smart Digital Agriculture Companion • ఆంధ్రప్రదేశ్ & తెలంగాణ</span>
+              </div>
+              <h1 class="landing-hero-title">
+                Smart Farming. <span class="accent-text">Better Information.</span>
+              </h1>
+              <p class="landing-hero-tagline">
+                “సాగులో స్మార్ట్ సాంకేతికత — రైతు చేతిలో శాస్త్రీయ సమాచారం”
+              </p>
+              <p class="landing-hero-subtitle">
+                Empowering Indian farmers, agronomists, and agricultural officers with real-time field intelligence, AI leaf diagnostics, live APMC mandi rates, and university-verified agronomic advisories.
+              </p>
+
+              <!-- Main Hero Action Buttons (Primary points directly to Login) -->
+              <div class="landing-hero-actions">
+                <button type="button" class="btn-hero-login-main" onclick="window.RythuNav.navigateTo('login')" title="Click to open the Login Page">
+                  <span style="font-size:1.45rem;">🔐</span>
+                  <div style="text-align:left;">
+                    <div style="font-weight:800; font-size:1.15rem; line-height:1.2;">Sign In to Your Farm</div>
+                    <div style="font-size:0.76rem; opacity:0.92; font-weight:500;">రైతు లాగిన్ • Farmer, Expert & Admin</div>
+                  </div>
+                </button>
+
+                <button type="button" class="btn-hero-register-sec" onclick="window.RythuNav.navigateTo('register')">
+                  <span style="font-size:1.45rem;">🌱</span>
+                  <div style="text-align:left;">
+                    <div style="font-weight:800; font-size:1.05rem; line-height:1.2;">Create Farmer Account</div>
+                    <div style="font-size:0.75rem; opacity:0.85; font-weight:500;">ఉచిత ఖాతా • 1-Minute Registration</div>
+                  </div>
+                </button>
+              </div>
+
+              <!-- Instant 1-Click Demo Shortcut Strip -->
+              <div class="landing-demo-strip">
+                <span style="font-weight:700; color:#fef08a;">⚡ Instant Demo Login:</span>
+                <button type="button" class="demo-chip-btn" onclick="window.RythuAuth.switchRole('farmer'); window.RythuNav.navigateTo('dashboard');">
+                  👨‍🌾 Farmer (Ravi - Kadapa)
+                </button>
+                <button type="button" class="demo-chip-btn" onclick="window.RythuAuth.switchRole('expert'); window.RythuNav.navigateTo('expert');">
+                  🧑‍🌾 Expert (Dr. Ramesh)
+                </button>
+                <button type="button" class="demo-chip-btn" onclick="window.RythuAuth.switchRole('admin'); window.RythuNav.navigateTo('admin');">
+                  🛡️ Admin (SuperAdmin)
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
+          </header>
 
-        <!-- Quick Access Services Grid -->
-        <div class="section-header">
-          <div class="section-title-wrap">
-            <h2 class="section-title" data-i18n="quickAccessTitle">⚡ Quick Access Services</h2>
-            <p class="section-subtitle" data-i18n="quickAccessSub">Essential farming tools and verified information at your fingertips</p>
-          </div>
-        </div>
+          <!-- 3. Live Impact Statistics Counter Strip -->
+          <section class="landing-stats-section">
+            <div class="landing-stats-grid">
+              <div class="stat-box">
+                <div class="stat-box-num">10,000+</div>
+                <div class="stat-box-label">Active Cultivators</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-num">6 Major</div>
+                <div class="stat-box-label">Crop Protocols</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-num">7-Day</div>
+                <div class="stat-box-label">Spray Feasibility</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-num">28 Mandis</div>
+                <div class="stat-box-label">Daily APMC Rates</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-box-num">98.4%</div>
+                <div class="stat-box-label">AI Diagnostic Accuracy</div>
+              </div>
+            </div>
+          </section>
 
-        <div class="quick-access-grid">
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('crops')">
-            <div class="quick-card-icon">🌱</div>
-            <div class="quick-card-title" data-i18n="cardCropsTitle">Crop Guide</div>
-            <div class="quick-card-desc" data-i18n="cardCropsDesc">Cultivation practices</div>
-          </div>
-
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('weather')">
-            <div class="quick-card-icon">🌦️</div>
-            <div class="quick-card-title" data-i18n="cardWeatherTitle">Farm Weather</div>
-            <div class="quick-card-desc" data-i18n="cardWeatherDesc">Live rain & temperature</div>
-          </div>
-
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('market')">
-            <div class="quick-card-icon">💰</div>
-            <div class="quick-card-title" data-i18n="cardMarketTitle">Market Prices</div>
-            <div class="quick-card-desc" data-i18n="cardMarketDesc">Daily APMC mandi rates</div>
-          </div>
-
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('diseases')">
-            <div class="quick-card-icon">🐛</div>
-            <div class="quick-card-title" data-i18n="cardDiseasesTitle">Crop Health</div>
-            <div class="quick-card-desc" data-i18n="cardDiseasesDesc">Identify pests & remedies</div>
-          </div>
-
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('scanner')">
-            <div class="quick-card-icon" style="background:#fef3c7; color:#d97706;">📷</div>
-            <div class="quick-card-title" data-i18n="cardScannerTitle">AI Leaf Scanner</div>
-            <div class="quick-card-desc" data-i18n="cardScannerDesc">Instant camera diagnosis</div>
-          </div>
-
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('calendar')">
-            <div class="quick-card-icon">📅</div>
-            <div class="quick-card-title" data-i18n="cardCalendarTitle">Crop Calendar</div>
-            <div class="quick-card-desc" data-i18n="cardCalendarDesc">Timeline & growth stages</div>
-          </div>
-
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('soil')">
-            <div class="quick-card-icon">🧪</div>
-            <div class="quick-card-title" data-i18n="cardSoilTitle">Soil Health</div>
-            <div class="quick-card-desc" data-i18n="cardSoilDesc">NPK & soil testing tips</div>
-          </div>
-
-          <div class="quick-access-card" onclick="window.RythuNav.navigateTo('schemes')">
-            <div class="quick-card-icon">🏛️</div>
-            <div class="quick-card-title" data-i18n="cardSchemesTitle">Govt Schemes</div>
-            <div class="quick-card-desc" data-i18n="cardSchemesDesc">PM-KISAN & subsidies</div>
-          </div>
-        </div>
-
-        <!-- Featured Highlights Grid -->
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-bottom:2.5rem;">
-          <!-- Highlight 1: AI Scanner Promo -->
-          <div style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; justify-content:space-between;">
-            <div>
-              <span class="badge badge-harvest" style="margin-bottom:0.5rem;">📷 Smart Vision</span>
-              <h3 style="font-size:1.3rem; font-weight:800; color:var(--primary-900); margin-bottom:0.4rem;">
-                Spot Plant Diseases Before They Spread
-              </h3>
-              <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
-                Take a quick photo of an infected leaf. RythuMitra AI analyzes spectral discoloration, spots, and blight patterns to suggest certified organic and chemical management steps.
+          <!-- 4. Three Persona Gateways (Farmer, Expert, Admin) -->
+          <section id="landingPersonas" class="landing-section">
+            <div class="landing-section-header">
+              <span class="landing-section-badge">Role-Based Experiences</span>
+              <h2 class="landing-section-title">Who is RythuMitra Built For?</h2>
+              <p class="landing-section-subtitle">
+                Tailored digital tools crafted specifically for cultivating farmers, research agronomists, and agricultural department officers.
               </p>
             </div>
-            <button class="btn btn-primary btn-sm" onclick="window.RythuNav.navigateTo('scanner')">
-              Try AI Leaf Scanner →
-            </button>
-          </div>
 
-          <!-- Highlight 2: Rythu Bharosa & Welfare -->
-          <div style="background:#fff; border:1px solid var(--border-subtle); border-radius:var(--radius-xl); padding:1.75rem; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; justify-content:space-between;">
-            <div>
-              <span class="badge badge-info" style="margin-bottom:0.5rem;">🏛️ Direct Benefit Transfer</span>
-              <h3 style="font-size:1.3rem; font-weight:800; color:var(--text-main); margin-bottom:0.4rem;">
-                Verify Your Subsidy Eligibility
-              </h3>
-              <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5; margin-bottom:1rem;">
-                Detailed eligibility criteria, required revenue documents (Passbook, CCRC), and application steps for YSR Rythu Bharosa (₹13,500/yr), PM-KISAN, and Micro-Irrigation Drip subsidies.
+            <div class="persona-cards-grid">
+              <!-- Persona 1: Farmer -->
+              <div class="persona-card" style="border-top:4px solid var(--primary-600);">
+                <div>
+                  <div class="persona-card-header">
+                    <div class="persona-avatar-box">👨‍🌾</div>
+                    <div>
+                      <h3 class="persona-card-title">Cultivating Farmer</h3>
+                      <span class="persona-card-role-badge badge badge-success">రైతుల కోసం • Core Persona</span>
+                    </div>
+                  </div>
+                  <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.5;">
+                    Manage your farm parcels, check live rain & spray feasibility advisories, monitor daily APMC market prices, and diagnose plant diseases instantly.
+                  </p>
+                  <ul class="persona-card-features">
+                    <li><span class="check-icon">✓</span> <span>Customized Groundnut, Paddy & Chilli advisories</span></li>
+                    <li><span class="check-icon">✓</span> <span>Hyperlocal Kadapa 7-day weather & rain alerts</span></li>
+                    <li><span class="check-icon">✓</span> <span>Instant camera AI leaf disease diagnosis</span></li>
+                    <li><span class="check-icon">✓</span> <span>Rythu Bharosa & PM-KISAN subsidy assistance</span></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-primary btn-persona-action" onclick="window.RythuAuth.selectRole('farmer'); window.RythuNav.navigateTo('login');">
+                  <span>Sign In as Farmer / రైతు లాగిన్ →</span>
+                </button>
+              </div>
+
+              <!-- Persona 2: Expert -->
+              <div class="persona-card" style="border-top:4px solid #0284c7;">
+                <div>
+                  <div class="persona-card-header">
+                    <div class="persona-avatar-box" style="background:#f0f9ff; border-color:#bae6fd;">🧑‍🌾</div>
+                    <div>
+                      <h3 class="persona-card-title">Agriculture Expert</h3>
+                      <span class="persona-card-role-badge badge badge-info">వ్యవసాయ నిపుణులు • Agronomy Desk</span>
+                    </div>
+                  </div>
+                  <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.5;">
+                    Empower cultivators by answering field queries, prescribing certified fungicide & fertilizer schedules, and publishing regional advisories.
+                  </p>
+                  <ul class="persona-card-features">
+                    <li><span class="check-icon" style="color:#0284c7;">✓</span> <span>Review AI leaf disease diagnostic reports</span></li>
+                    <li><span class="check-icon" style="color:#0284c7;">✓</span> <span>Prescribe ANGRAU-approved chemical/bio remedies</span></li>
+                    <li><span class="check-icon" style="color:#0284c7;">✓</span> <span>Publish regional pest alerts & weather warnings</span></li>
+                    <li><span class="check-icon" style="color:#0284c7;">✓</span> <span>Track farm consultation history and outcomes</span></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-secondary btn-persona-action" style="background:#0284c7; color:#fff;" onclick="window.RythuAuth.selectRole('expert'); window.RythuNav.navigateTo('login');">
+                  <span>Sign In as Expert / నిపుణుల లాగిన్ →</span>
+                </button>
+              </div>
+
+              <!-- Persona 3: Administrator -->
+              <div class="persona-card" style="border-top:4px solid #7c3aed;">
+                <div>
+                  <div class="persona-card-header">
+                    <div class="persona-avatar-box" style="background:#f5f3ff; border-color:#ddd6fe;">🛡️</div>
+                    <div>
+                      <h3 class="persona-card-title">Platform Admin</h3>
+                      <span class="persona-card-role-badge badge" style="background:#ede9fe; color:#6d28d9;">అధికారులు • System Governance</span>
+                    </div>
+                  </div>
+                  <p style="font-size:0.92rem; color:var(--text-muted); line-height:1.5;">
+                    Supervise agricultural intelligence, monitor APMC price volatility, verify welfare scheme applications, and manage platform catalogs.
+                  </p>
+                  <ul class="persona-card-features">
+                    <li><span class="check-icon" style="color:#7c3aed;">✓</span> <span>Daily APMC mandi rate publishing & price alerts</span></li>
+                    <li><span class="check-icon" style="color:#7c3aed;">✓</span> <span>Verify PM-KISAN & e-Crop farmer records</span></li>
+                    <li><span class="check-icon" style="color:#7c3aed;">✓</span> <span>Manage crop disease knowledge & spray recipes</span></li>
+                    <li><span class="check-icon" style="color:#7c3aed;">✓</span> <span>Statewide agricultural analytics dashboard</span></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-outline btn-persona-action" style="border-color:#7c3aed; color:#6d28d9;" onclick="window.RythuAuth.selectRole('admin'); window.RythuNav.navigateTo('login');">
+                  <span>Admin Portal / అడ్మిన్ లాగిన్ →</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. Core Feature Showcase Section -->
+          <section id="landingFeatures" class="landing-section">
+            <div class="landing-section-header">
+              <span class="landing-section-badge">Intelligent Farming Tools</span>
+              <h2 class="landing-section-title">Everything Needed for Bumper Harvests</h2>
+              <p class="landing-section-subtitle">
+                Six integrated agronomic modules designed to eliminate farming guesswork and maximize crop profits.
               </p>
             </div>
-            <button class="btn btn-secondary btn-sm" onclick="window.RythuNav.navigateTo('schemes')">
-              Explore All Schemes →
-            </button>
-          </div>
+
+            <div class="features-cards-grid">
+              <!-- Feature 1: Crop Guide -->
+              <div class="feature-box">
+                <div>
+                  <div class="feature-icon-bubble" style="background:var(--primary-100); color:var(--primary-800);">🌱</div>
+                  <h3 class="feature-box-title">Agronomic Crop Guides</h3>
+                  <p class="feature-box-desc">
+                    Comprehensive cultivation manuals for Groundnut, Paddy, Cotton, Chilli, Bengal Gram, and Mango. Seed rates, spacing, fertilizer doses, and irrigation stages.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('crops')">
+                  Explore Crop Guides →
+                </button>
+              </div>
+
+              <!-- Feature 2: Weather & Spray Advisory -->
+              <div class="feature-box">
+                <div>
+                  <div class="feature-icon-bubble" style="background:#e0f2fe; color:#0369a1;">🌦️</div>
+                  <h3 class="feature-box-title">7-Day Spray Weather</h3>
+                  <p class="feature-box-desc">
+                    Hyperlocal rain risk, wind speed, and humidity tracking powered by Open-Meteo. Know exactly when it is safe to spray chemical pesticides or apply top-dressing fertilizers.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('weather')">
+                  Check Farm Forecast →
+                </button>
+              </div>
+
+              <!-- Feature 3: Mandi Rates -->
+              <div class="feature-box">
+                <div>
+                  <div class="feature-icon-bubble" style="background:#fef3c7; color:#b45309;">💰</div>
+                  <h3 class="feature-box-title">Daily APMC Mandi Rates</h3>
+                  <p class="feature-box-desc">
+                    Live market prices from Kadapa, Kurnool, Guntur, and Tirupati agricultural markets. Monitor minimum, maximum, and modal bhav to sell at peak market value.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('market')">
+                  View Today's Rates →
+                </button>
+              </div>
+
+              <!-- Feature 4: AI Leaf Scanner -->
+              <div class="feature-box">
+                <div>
+                  <div class="feature-icon-bubble" style="background:#dcfce7; color:#15803d;">📷</div>
+                  <h3 class="feature-box-title">AI Leaf Disease Scanner</h3>
+                  <p class="feature-box-desc">
+                    Snap a photo of any diseased crop leaf. Our computer vision model identifies Tikka leaf spot, Blast, Wilt, and Leaf curl within seconds with ANGRAU-certified treatment steps.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('scanner')">
+                  Try AI Scanner →
+                </button>
+              </div>
+
+              <!-- Feature 5: Crop Calendar -->
+              <div class="feature-box">
+                <div>
+                  <div class="feature-icon-bubble" style="background:#f3e8ff; color:#7e22ce;">📅</div>
+                  <h3 class="feature-box-title">Stage Growth Calendar</h3>
+                  <p class="feature-box-desc">
+                    Visual milestone tracking from sowing to harvest. Get automated reminders for basal fertilizer, weeding, vegetative growth, flowering, and pod development.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('calendar')">
+                  Open Crop Calendar →
+                </button>
+              </div>
+
+              <!-- Feature 6: Government Schemes -->
+              <div class="feature-box">
+                <div>
+                  <div class="feature-icon-bubble" style="background:#fee2e2; color:#b91c1c;">🏛️</div>
+                  <h3 class="feature-box-title">Govt Welfare Schemes</h3>
+                  <p class="feature-box-desc">
+                    Direct eligibility criteria, passbook requirements, and application guides for YSR Rythu Bharosa (₹13,500/year), PM-KISAN, PMFBY crop insurance, and drip subsidies.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('schemes')">
+                  Explore Welfare Schemes →
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6. How It Works (3 Steps) -->
+          <section class="landing-section" style="background:#ffffff; border:1px solid var(--border-subtle); border-radius:24px; padding:3.5rem 2rem; box-shadow:var(--shadow-sm);">
+            <div class="landing-section-header" style="margin-bottom:2.5rem;">
+              <span class="landing-section-badge">Easy 3-Step Process</span>
+              <h2 class="landing-section-title">How RythuMitra Works</h2>
+              <p class="landing-section-subtitle">Get started in under 60 seconds with no complex paperwork.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:2rem; text-align:center;">
+              <div style="padding:1rem;">
+                <div style="width:54px; height:54px; border-radius:50%; background:var(--primary-700); color:#fff; font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;">1</div>
+                <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:0.4rem;">Sign In or Register</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.5;">Choose your role (Farmer, Expert, or Admin) and sign in using Google or mobile demo access.</p>
+              </div>
+
+              <div style="padding:1rem;">
+                <div style="width:54px; height:54px; border-radius:50%; background:var(--primary-700); color:#fff; font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;">2</div>
+                <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:0.4rem;">Add Your Farm Crops</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.5;">Input your land acreage, soil type (e.g. Red Sandy Loam in Kadapa), and active crops.</p>
+              </div>
+
+              <div style="padding:1rem;">
+                <div style="width:54px; height:54px; border-radius:50%; background:var(--primary-700); color:#fff; font-size:1.5rem; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 1.25rem;">3</div>
+                <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:0.4rem;">Receive Daily Advisory</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.5;">Get automated 7-day spray windows, real-time APMC mandi bhav, and disease remedies.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 7. Farmer Testimonials Section -->
+          <section class="landing-section" style="margin-top:4rem;">
+            <div class="landing-section-header">
+              <span class="landing-section-badge">Trusted by Real Farmers</span>
+              <h2 class="landing-section-title">Field Success Stories</h2>
+              <p class="landing-section-subtitle">Real experiences from cultivators across Rayalaseema and Coastal Andhra Pradesh.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.75rem;">
+              <div style="background:#ffffff; border:1px solid var(--border-subtle); border-radius:20px; padding:1.75rem; box-shadow:var(--shadow-sm);">
+                <div style="color:#f59e0b; font-size:1.1rem; margin-bottom:0.75rem;">★★★★★</div>
+                <p style="font-size:0.95rem; color:var(--text-main); line-height:1.6; font-style:italic; margin-bottom:1.25rem;">
+                  "RythuMitra’s spray advisory warned me not to spray fungicide before the sudden rains last month. That single alert saved ₹3,200 in pesticide cost and protected my 3 acres of Groundnut in Kadapa."
+                </p>
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-100); display:flex; align-items:center; justify-content:center; font-size:1.3rem;">👨‍🌾</div>
+                  <div>
+                    <div style="font-weight:800; font-size:0.95rem; color:var(--text-main);">Ravi Kumar</div>
+                    <div style="font-size:0.78rem; color:var(--text-muted);">Groundnut Cultivator • Vempalli, Kadapa (3 Acres)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:#ffffff; border:1px solid var(--border-subtle); border-radius:20px; padding:1.75rem; box-shadow:var(--shadow-sm);">
+                <div style="color:#f59e0b; font-size:1.1rem; margin-bottom:0.75rem;">★★★★★</div>
+                <p style="font-size:0.95rem; color:var(--text-main); line-height:1.6; font-style:italic; margin-bottom:1.25rem;">
+                  "Checking the daily modal rates on RythuMitra before taking my cotton harvest to the mandi helped me negotiate ₹450 higher per quintal at Kurnool APMC. Essential tool for every farmer."
+                </p>
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-100); display:flex; align-items:center; justify-content:center; font-size:1.3rem;">🧑‍🌾</div>
+                  <div>
+                    <div style="font-weight:800; font-size:0.95rem; color:var(--text-main);">S. Venkat Reddy</div>
+                    <div style="font-size:0.78rem; color:var(--text-muted);">Cotton & Chilli Farmer • Yerraguntla (5 Acres)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:#ffffff; border:1px solid var(--border-subtle); border-radius:20px; padding:1.75rem; box-shadow:var(--shadow-sm);">
+                <div style="color:#f59e0b; font-size:1.1rem; margin-bottom:0.75rem;">★★★★★</div>
+                <p style="font-size:0.95rem; color:var(--text-main); line-height:1.6; font-style:italic; margin-bottom:1.25rem;">
+                  "The leaf scanner diagnosed blast disease on my paddy within seconds and provided the right dosage of Tricyclazole. The bilingual Telugu interface is very simple to navigate."
+                </p>
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-100); display:flex; align-items:center; justify-content:center; font-size:1.3rem;">🌾</div>
+                  <div>
+                    <div style="font-weight:800; font-size:0.95rem; color:var(--text-main);">M. Lakshmi Narayana</div>
+                    <div style="font-size:0.78rem; color:var(--text-muted);">Paddy Cultivator • Proddatur (4 Acres)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 8. Kisan Toll-Free Helpdesk Banner -->
+          <section class="landing-section">
+            <div style="background:linear-gradient(135deg, #f0fdf4, #dcfce7); border:1px solid var(--border-brand); border-radius:20px; padding:2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+              <div style="display:flex; align-items:center; gap:1.25rem;">
+                <div style="width:60px; height:60px; border-radius:16px; background:var(--primary-700); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.8rem; flex-shrink:0;">📞</div>
+                <div>
+                  <h3 style="font-size:1.25rem; font-weight:800; color:var(--primary-900); margin-bottom:0.25rem;">
+                    Kisan Call Center & RBK Assistance
+                  </h3>
+                  <p style="font-size:0.9rem; color:var(--primary-800); margin:0;">
+                    Need immediate agronomist guidance? Toll-Free Helpline: <strong>1800-180-1551</strong> or visit your nearest Rythu Bharosa Kendra.
+                  </p>
+                </div>
+              </div>
+              <a href="tel:18001801551" class="btn btn-primary" style="border-radius:99px; font-weight:800;">
+                📞 Call Kisan Helpline
+              </a>
+            </div>
+          </section>
+
+          <!-- 9. High-Conversion Pre-Footer Call to Action Banner -->
+          <section class="landing-section">
+            <div class="landing-cta-banner">
+              <h2>Ready to Transform Your Farming?</h2>
+              <p>
+                Join thousands of farmers across Andhra Pradesh utilizing smart digital agriculture. Access real-time field advisories, disease detection, and mandi rates now.
+              </p>
+              <div class="landing-cta-banner-actions">
+                <button type="button" class="btn-hero-login-main" onclick="window.RythuNav.navigateTo('login')" title="Click to open the Login Page">
+                  <span style="font-size:1.3rem;">🔐</span>
+                  <span>Sign In to RythuMitra / లాగిన్ అవ్వండి</span>
+                </button>
+                <button type="button" class="btn-hero-register-sec" onclick="window.RythuNav.navigateTo('register')">
+                  <span>🌱</span>
+                  <span>Create Free Farmer Account</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 10. Comprehensive Professional Footer -->
+          <footer class="landing-footer">
+            <div class="landing-footer-inner">
+              <div class="landing-footer-grid">
+                <!-- Col 1: Brand Info -->
+                <div class="footer-col" style="grid-column:span 1;">
+                  <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;">
+                    <span style="font-size:1.8rem;">🌾</span>
+                    <span style="font-weight:800; font-size:1.35rem; color:#ffffff;">RythuMitra</span>
+                  </div>
+                  <p style="font-size:0.88rem; line-height:1.6; color:#9ca3af; margin-bottom:1.25rem;">
+                    Smart Digital Farming Companion for Indian agriculture. Empowering farmers with certified agronomy, AI leaf diagnostics, and live APMC mandi prices.
+                  </p>
+                  <div style="display:inline-block; padding:0.3rem 0.75rem; background:rgba(255,255,255,0.08); border-radius:8px; font-size:0.78rem; color:#a7f3d0;">
+                    ✓ Built with ANGRAU Agronomy Protocols
+                  </div>
+                </div>
+
+                <!-- Col 2: Core Tools -->
+                <div class="footer-col">
+                  <h4>Farming Tools</h4>
+                  <ul class="footer-links">
+                    <li><a onclick="window.RythuNav.navigateTo('crops')">🌱 Crop Cultivation Guide</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('weather')">🌦️ Farm Weather Advisory</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('market')">💰 Live APMC Mandi Prices</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('scanner')">📷 AI Leaf Disease Scanner</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('calendar')">📅 Crop Stage Calendar</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('soil')">🧪 Soil Health & NPK Guide</a></li>
+                  </ul>
+                </div>
+
+                <!-- Col 3: Role Portals & Auth -->
+                <div class="footer-col">
+                  <h4>Account & Portals</h4>
+                  <ul class="footer-links">
+                    <li><a onclick="window.RythuAuth.selectRole('farmer'); window.RythuNav.navigateTo('login');">👨‍🌾 Farmer Login (రైతు)</a></li>
+                    <li><a onclick="window.RythuAuth.selectRole('expert'); window.RythuNav.navigateTo('login');">🧑‍🌾 Expert Portal (నిపుణులు)</a></li>
+                    <li><a onclick="window.RythuAuth.selectRole('admin'); window.RythuNav.navigateTo('login');">🛡️ Platform Admin (అడ్మిన్)</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('register');">🌱 Create Farmer Account</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('dashboard');">📊 Direct Dashboard Access</a></li>
+                  </ul>
+                </div>
+
+                <!-- Col 4: Government & Helpline -->
+                <div class="footer-col">
+                  <h4>Support & Welfare</h4>
+                  <ul class="footer-links">
+                    <li><a onclick="window.RythuNav.navigateTo('schemes')">🏛️ YSR Rythu Bharosa</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('schemes')">🌾 PM-KISAN Samman Nidhi</a></li>
+                    <li><a onclick="window.RythuNav.navigateTo('schemes')">🛡️ PMFBY Crop Insurance</a></li>
+                    <li><a href="tel:18001801551">📞 Kisan Call Center (1800-180-1551)</a></li>
+                    <li><a onclick="window.RythuI18n.toggle();">🌐 Switch Language / భాష మార్చండి</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Footer Bottom Strip -->
+              <div class="landing-footer-bottom">
+                <div>
+                  © 2026 RythuMitra (రైతుమిత్ర). Smart Farming. Better Information. All rights reserved.
+                </div>
+                <div style="display:flex; gap:1.25rem;">
+                  <span style="color:#6b7280;">Kadapa • Kurnool • Tirupati • Guntur</span>
+                  <a onclick="window.RythuNav.navigateTo('login')" style="color:#34d399; font-weight:700; cursor:pointer;">
+                    🔐 Go to Login Page →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
+
         </div>
       </section>
 
@@ -436,15 +824,16 @@
           <!-- Right Authentication Panel -->
           <div class="auth-split-right">
             <div class="auth-card-wrapper">
-              <!-- Top Language & Brand Bar on Mobile -->
-              <div class="auth-header-top">
-                <div style="display:flex; align-items:center; gap:0.6rem;">
-                  <span style="font-size:1.6rem;">🌾</span>
-                  <span style="font-weight:800; font-size:1.2rem; color:var(--primary-800);">RythuMitra</span>
-                </div>
-                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuI18n.toggle();" style="border-radius:var(--radius-pill); font-size:0.78rem;">
-                  🌐 <span id="authLangLabel">తెలుగు</span>
+              <!-- Top Back to Home and Language Bar -->
+              <div class="auth-header-top" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('landing')" style="border-radius:var(--radius-pill); font-size:0.82rem; font-weight:700; display:inline-flex; align-items:center; gap:0.4rem; color:var(--primary-800); border-color:var(--border-brand); background:var(--primary-50); cursor:pointer;">
+                  <span>←</span> <span>Home / హోమ్</span>
                 </button>
+                <div style="display:flex; align-items:center; gap:0.6rem;">
+                  <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuI18n.toggle();" style="border-radius:var(--radius-pill); font-size:0.78rem;">
+                    🌐 <span id="authLangLabel">తెలుగు</span>
+                  </button>
+                </div>
               </div>
 
               <h2 class="auth-title">Welcome to RythuMitra</h2>
@@ -585,9 +974,14 @@
                   <span style="font-size:0.85rem; color:var(--text-muted);">రైతు నమోదు • Digital Farm Profile Creation</span>
                 </div>
               </div>
-              <button type="button" class="btn btn-outline btn-sm" data-view="login" style="border-radius:var(--radius-pill);">
-                ← Back to Login
-              </button>
+              <div style="display:flex; gap:0.5rem;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="window.RythuNav.navigateTo('landing')" style="border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">
+                  ← Home
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="window.RythuNav.navigateTo('login')" style="border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">
+                  Sign In / లాగిన్
+                </button>
+              </div>
             </div>
 
             <!-- Farmer Registration Form with 11 Fields -->
@@ -981,37 +1375,37 @@
 
   <!-- JavaScript Libraries & Modules -->
   <!-- 1. Data Catalogs -->
-  <script src="js/data/crops-data.js?v=2.2"></script>
-  <script src="js/data/diseases-data.js?v=2.2"></script>
-  <script src="js/data/schemes-data.js?v=2.2"></script>
-  <script src="js/data/markets-data.js?v=2.2"></script>
-  <script src="js/data/calendar-data.js?v=2.2"></script>
-  <script src="js/data/soil-data.js?v=2.2"></script>
+  <script src="js/data/crops-data.js?v=3.0"></script>
+  <script src="js/data/diseases-data.js?v=3.0"></script>
+  <script src="js/data/schemes-data.js?v=3.0"></script>
+  <script src="js/data/markets-data.js?v=3.0"></script>
+  <script src="js/data/calendar-data.js?v=3.0"></script>
+  <script src="js/data/soil-data.js?v=3.0"></script>
 
   <!-- 2. Services & Architecture (Firebase App & Auth SDK v10) -->
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
-  <script src="js/i18n.js?v=2.2"></script>
-  <script src="js/weather-service.js?v=2.2"></script>
-  <script src="js/firebase-service.js?v=2.2"></script>
+  <script src="js/i18n.js?v=3.0"></script>
+  <script src="js/weather-service.js?v=3.0"></script>
+  <script src="js/firebase-service.js?v=3.0"></script>
 
   <!-- 3. UI Components -->
-  <script src="js/components/auth-view.js?v=2.2"></script>
-  <script src="js/components/nav.js?v=2.2"></script>
-  <script src="js/components/dashboard.js?v=2.2"></script>
-  <script src="js/components/expert-view.js?v=2.2"></script>
-  <script src="js/components/crop-guide.js?v=2.2"></script>
-  <script src="js/components/weather-view.js?v=2.2"></script>
-  <script src="js/components/market-view.js?v=2.2"></script>
-  <script src="js/components/disease-scanner.js?v=2.2"></script>
-  <script src="js/components/schemes-view.js?v=2.2"></script>
-  <script src="js/components/my-farm.js?v=2.2"></script>
-  <script src="js/components/calendar-view.js?v=2.2"></script>
-  <script src="js/components/soil-view.js?v=2.2"></script>
-  <script src="js/components/admin-view.js?v=2.2"></script>
-  <script src="js/components/modals.js?v=2.2"></script>
+  <script src="js/components/auth-view.js?v=3.0"></script>
+  <script src="js/components/nav.js?v=3.0"></script>
+  <script src="js/components/dashboard.js?v=3.0"></script>
+  <script src="js/components/expert-view.js?v=3.0"></script>
+  <script src="js/components/crop-guide.js?v=3.0"></script>
+  <script src="js/components/weather-view.js?v=3.0"></script>
+  <script src="js/components/market-view.js?v=3.0"></script>
+  <script src="js/components/disease-scanner.js?v=3.0"></script>
+  <script src="js/components/schemes-view.js?v=3.0"></script>
+  <script src="js/components/my-farm.js?v=3.0"></script>
+  <script src="js/components/calendar-view.js?v=3.0"></script>
+  <script src="js/components/soil-view.js?v=3.0"></script>
+  <script src="js/components/admin-view.js?v=3.0"></script>
+  <script src="js/components/modals.js?v=3.0"></script>
 
   <!-- 4. Main App Orchestrator -->
-  <script src="js/app.js?v=2.2"></script>
+  <script src="js/app.js?v=3.0"></script>
 </body>
 </html>

@@ -269,20 +269,53 @@ window.RythuNav = {
   navigateTo(viewId) {
     this.activeView = viewId;
 
-    // Check if login or register view
+    // Check if auth view or landing view
     const isAuthView = (viewId === 'login' || viewId === 'register');
+    const isLanding = (viewId === 'landing');
     const header = document.querySelector('.app-header');
     const sidebar = document.querySelector('.app-sidebar');
     const mobileNav = document.querySelector('.mobile-bottom-nav');
+    const appMain = document.querySelector('.app-main');
+
+    // Sync URL hash
+    if (viewId === 'landing') {
+      if (window.location.hash && window.location.hash !== '#' && window.location.hash !== '#landing') {
+        window.history.pushState(null, '', window.location.pathname);
+      }
+    } else {
+      if (window.location.hash !== `#${viewId}`) {
+        window.history.pushState(null, '', `#${viewId}`);
+      }
+    }
 
     if (isAuthView) {
       if (header) header.style.display = 'none';
       if (sidebar) sidebar.style.display = 'none';
       if (mobileNav) mobileNav.style.display = 'none';
+      if (appMain) {
+        appMain.style.padding = '0';
+        appMain.style.maxWidth = '100%';
+        appMain.style.width = '100%';
+      }
+    } else if (isLanding) {
+      if (header) header.style.display = 'none';
+      if (sidebar) sidebar.style.display = 'none';
+      if (mobileNav) mobileNav.style.display = 'none';
+      if (appMain) {
+        appMain.style.padding = '0';
+        appMain.style.maxWidth = '100%';
+        appMain.style.width = '100%';
+      }
+      this.updateLandingSessionUI();
     } else {
       if (header) header.style.display = 'flex';
       if (sidebar) sidebar.style.display = 'block';
       if (mobileNav) mobileNav.style.display = 'block';
+      if (appMain) {
+        appMain.style.padding = '';
+        appMain.style.maxWidth = '';
+        appMain.style.width = '';
+      }
       this.renderSidebarForRole();
     }
 
@@ -326,6 +359,23 @@ window.RythuNav = {
         <span>${isTe ? "English" : "తెలుగు"}</span>
         <span class="lang-badge">${isTe ? "EN" : "TE"}</span>
       `;
+    }
+  },
+
+  updateLandingSessionUI() {
+    const sessionBtn = document.getElementById('landingNavDashboardBtn');
+    if (!sessionBtn) return;
+    const authUser = window.RythuAuth && window.RythuAuth.currentUser;
+    if (authUser && authUser.name) {
+      sessionBtn.style.display = 'inline-flex';
+      const role = authUser.role || 'farmer';
+      sessionBtn.onclick = () => {
+        if (role === 'expert') window.RythuNav.navigateTo('expert');
+        else if (role === 'admin') window.RythuNav.navigateTo('admin');
+        else window.RythuNav.navigateTo('dashboard');
+      };
+    } else {
+      sessionBtn.style.display = 'none';
     }
   },
 

@@ -61,6 +61,16 @@ window.RythuApp = {
       window.RythuNav.navigateTo('landing');
     }
 
+    // Handle browser back / forward buttons
+    window.addEventListener('hashchange', () => {
+      const currentHash = window.location.hash.replace('#', '');
+      if (currentHash && document.getElementById(`view-${currentHash}`)) {
+        window.RythuNav.navigateTo(currentHash);
+      } else {
+        window.RythuNav.navigateTo('landing');
+      }
+    });
+
     console.log("🌾 RythuMitra ready!");
   },
 

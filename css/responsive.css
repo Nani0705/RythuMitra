@@ -167,6 +167,41 @@
   .register-grid-full {
     grid-column: span 1;
   }
+
+  /* Landing Page Mobile Adjustments */
+  .landing-nav-links {
+    display: none;
+  }
+
+  .landing-hero {
+    padding: 3rem 1rem 2.5rem;
+  }
+
+  .landing-hero-title {
+    font-size: 2.15rem;
+  }
+
+  .landing-hero-subtitle {
+    font-size: 0.98rem;
+  }
+
+  .landing-section-title {
+    font-size: 1.75rem;
+  }
+
+  .btn-hero-login-main,
+  .btn-hero-register-sec {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .landing-cta-banner {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .landing-cta-banner h2 {
+    font-size: 1.85rem;
+  }
 }
 
 /* Touch Device Ergonomics */

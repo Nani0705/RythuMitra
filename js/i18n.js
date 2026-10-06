@@ -421,6 +421,11 @@ window.RythuI18n = {
       }
     });
 
+    // Update language toggle labels
+    document.querySelectorAll('.landingLangLabel, #authLangLabel').forEach(el => {
+      el.textContent = lang === 'te' ? 'English' : 'తెలుగు';
+    });
+
     // Notify listeners or components
     window.dispatchEvent(new CustomEvent('rythu:lang-changed', { detail: { lang } }));
   }
