@@ -4,9 +4,17 @@
    =================================================================== */
 
 window.RythuFirebase = {
-  isConfigured: false,
-  isLive: false,
-  config: null,
+  isConfigured: true,
+  isLive: true,
+  config: {
+    projectId: "rythumitra-csp",
+    appId: "1:654396959991:web:d44f09b8400221666437f2",
+    storageBucket: "rythumitra-csp.firebasestorage.app",
+    apiKey: "AIzaSyBA6W0etMFjAkdWPuxVNhCJTrFApzIQSGQ",
+    authDomain: "rythumitra-csp.firebaseapp.com",
+    messagingSenderId: "654396959991",
+    measurementId: "G-6Q4GBT3ZDH"
+  },
   app: null,
   auth: null,
   db: null,
