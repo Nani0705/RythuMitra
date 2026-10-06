@@ -1,0 +1,21 @@
+{
+  "name": "rythumitra",
+  "version": "1.0.0",
+  "description": "🌾 RythuMitra — Smart Digital Farming Platform for Indian Farmers (CSP College Project)",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "rythumitra",
+    "smart-farming",
+    "agriculture",
+    "andhra-pradesh",
+    "telangana",
+    "csp-project"
+  ],
+  "author": "Nani0705",
+  "license": "MIT"
+}
